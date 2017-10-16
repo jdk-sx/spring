@@ -7,17 +7,10 @@
 		<property name="dname" value="财务部"/>
 		<property name="enable" value="true"/> 
 		<property name="infos">	<!-- 追加的是普通的字符串的数组信息 -->
-			<map>
-				<entry key="1" value="www.mldn.cn"/>
-				<entry key="1" value="www.mldnjava.cn"/>	<!-- key重复会覆盖 -->
-				<entry key="2" value="hello mldn"/>
-			</map>
-		</property>
-		<property name="emps">
-			<map>
-				<entry key="emp-allen" value-ref="empA"/>
-				<entry key="emp-ford" value-ref="empB"/> 
-			</map>
+			<props>
+				<prop key="mldn">www.mldn.cn</prop>
+				<prop key="mldnjava">www.mldnjava.cn</prop>
+			</props> 
 		</property>
 	</bean>   
 	<!-- 在Spring中负责进行MessageImpl类对象的实例化处理，这个时候相当于使用反射机制来实例化对象 -->

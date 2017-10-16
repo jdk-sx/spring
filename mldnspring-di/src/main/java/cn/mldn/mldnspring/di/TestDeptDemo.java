@@ -14,7 +14,5 @@ public class TestDeptDemo {
 		Dept dept = ctx.getBean("deptObj",Dept.class) ;
 		System.out.println(dept);
 		System.out.println(dept.getInfos());
-		System.out.println(dept.getEmps());
-		System.out.println(dept.getInfos().getClass().getName());
 	}
 }
