@@ -2,9 +2,5 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
-	<bean id="deptObj" class="cn.mldn.mldnspring.di.vo.Dept">
-		<constructor-arg name="paramDname" value="财务部"/>
-		<constructor-arg name="paramDeptno" value="10"/>
-		<constructor-arg name="paramEnable" value="yes"/>
-	</bean>
+	<bean id="message" class="cn.mldn.mldnspring.di.vo.Message" scope="prototype"/>
 </beans>
