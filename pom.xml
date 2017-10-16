@@ -96,5 +96,6 @@
 		<module>mldnspring-ioc</module>
 		<module>mldnspring-di</module>
 		<module>mldnspring-context</module>
+		<module>mldnspring-resource</module>
 	</modules>
 </project>
