@@ -87,5 +87,6 @@
 	</build>
 	<modules>
 		<module>mldnspring-ioc</module>
+		<module>mldnspring-di</module>
 	</modules>
 </project>
