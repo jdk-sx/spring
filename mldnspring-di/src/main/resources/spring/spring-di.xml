@@ -3,8 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 	<bean id="deptObj" class="cn.mldn.mldnspring.di.vo.Dept">
-		<constructor-arg index="1" value="财务部"/>
-		<constructor-arg index="0" value="10"/>
-		<constructor-arg index="2" value="yes"/>
+		<constructor-arg name="paramDname" value="财务部"/>
+		<constructor-arg name="paramDeptno" value="10"/>
+		<constructor-arg name="paramEnable" value="yes"/>
 	</bean>
 </beans>
