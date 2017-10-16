@@ -4,7 +4,7 @@
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans 
 		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
-	<!-- 在Spring中负责进行MessageImpl类对象的实例化处理，这个时候相当于使用反射机制来实例化对象 -->
-	<bean id="messageImpl" class="cn.mldn.mldnspring.ioc.service.impl.MessageImpl"/>
-
-</beans> 
+	<bean id="resourceBean" class="cn.mldn.mldnspring.resource.util.DefaultResourceBean">
+		<property name="resource" value="http://localhost/mldn/mldn-data.txt"/>
+	</bean> 
+</beans>  
