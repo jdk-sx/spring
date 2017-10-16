@@ -85,4 +85,7 @@
 			</plugin>
 		</plugins>
 	</build>
+	<modules>
+		<module>mldnspring-ioc</module>
+	</modules>
 </project>
