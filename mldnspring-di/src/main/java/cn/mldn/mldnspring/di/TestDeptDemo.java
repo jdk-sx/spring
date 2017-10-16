@@ -1,10 +1,8 @@
 package cn.mldn.mldnspring.di;
 
-import java.util.Arrays;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
- 
+
 import cn.mldn.mldnspring.di.vo.Dept;
 
 public class TestDeptDemo {
@@ -13,6 +11,5 @@ public class TestDeptDemo {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring/spring-di.xml") ;
 		Dept dept = ctx.getBean("deptObj",Dept.class) ;
 		System.out.println(dept);
-		System.out.println(dept.getInfos());
 	}
 }
