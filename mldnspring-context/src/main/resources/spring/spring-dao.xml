@@ -2,6 +2,5 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
-	<bean id="message" class="cn.mldn.mldnspring.di.vo.Message"
-		init-method="initMessage" destroy-method="destroyMessage" lazy-init="true"/>
+	<bean id="deptDAO" class="cn.mldn.mldnspring.context.dao.impl.DeptDAOImpl" />
 </beans>
