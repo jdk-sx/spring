@@ -1,5 +1,6 @@
 package cn.mldn.mldnspring.resource;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
 import javax.annotation.Resource;
@@ -18,11 +19,15 @@ public class TestResource {
 	private DefaultResourceBean resourceBean ;
 	@Test
 	public void testResource() throws Exception { 
-		Scanner scan = new Scanner(this.resourceBean.getResource().getInputStream()) ;
-		scan.useDelimiter("\n") ;
-		while (scan.hasNext()) {
-			System.out.print(scan.next()); 
+		Iterator<org.springframework.core.io.Resource> iter = this.resourceBean.getResources().iterator() ;
+		while (iter.hasNext()) {
+			Scanner scan = new Scanner(iter.next().getInputStream()) ;
+			scan.useDelimiter("\n") ;
+			while (scan.hasNext()) {
+				System.out.print(scan.next()); 
+			}
+			scan.close(); 
+			System.out.println("******************************************");
 		}
-		scan.close(); 
 	}
 }

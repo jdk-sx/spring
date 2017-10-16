@@ -5,6 +5,12 @@
 		http://www.springframework.org/schema/beans 
 		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 	<bean id="resourceBean" class="cn.mldn.mldnspring.resource.util.DefaultResourceBean">
-		<property name="resource" value="http://localhost/mldn/mldn-data.txt"/>
+		<property name="resources">
+			<list>
+				<value>http://localhost/mldn/mldn-data.txt</value>
+				<value>classpath:spring/spring-resource.xml</value>
+				<value>file:d:/mldn.txt</value>
+			</list>
+		</property>
 	</bean> 
 </beans>  
