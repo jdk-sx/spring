@@ -2,6 +2,7 @@ package cn.mldn.mldnspring.di.vo;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @SuppressWarnings("serial")
@@ -9,19 +10,19 @@ public class Dept implements Serializable {
 	private Long deptno ;
 	private String dname ;
 	private Boolean enable ;
-	private Set<String> infos ;
-	private List<String> msgs ;
-	public void setInfos(Set<String> infos) {
+	private Map<Integer,String> infos ;
+	private Map<String,Emp> emps ;
+	public void setEmps(Map<String, Emp> emps) {
+		this.emps = emps;
+	}
+	public void setInfos(Map<Integer, String> infos) {
 		this.infos = infos;
 	}
-	public void setMsgs(List<String> msgs) {
-		this.msgs = msgs;
+	public Map<String, Emp> getEmps() {
+		return emps;
 	}
-	public Set<String> getInfos() {
+	public Map<Integer, String> getInfos() {
 		return infos;
-	}
-	public List<String> getMsgs() {
-		return msgs;
 	}
 	public Long getDeptno() {
 		return deptno;
