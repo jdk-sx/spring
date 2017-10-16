@@ -1,18 +1,21 @@
 package cn.mldn.mldnspring.context.service.impl;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
 import cn.mldn.mldnspring.context.dao.IDeptDAO;
 import cn.mldn.mldnspring.context.service.IDeptService;
-import cn.mldn.mldnspring.context.vo.Dept; 
-
+import cn.mldn.mldnspring.context.vo.Dept;
+// <bean id="deptService" class="cn.mldn.mldnspring.context.service.impl.DeptServiceImpl"/>
+@Service
 public class DeptServiceImpl implements IDeptService {
-	private IDeptDAO deptDAO ; 	// 定义IDeptDAO接口对象
-	public void setDeptDAO(IDeptDAO deptDAO) {	// 该对象要通过外部进行注入
-		this.deptDAO = deptDAO;	// 数据层对象的实例化控制完全由Spring负责处理
-	}
+	@Resource	// <property name="deptDAO" ref="deptDAO"/>
+	private IDeptDAO deptDAO; // 定义IDeptDAO接口对象，表示该对象通过容器负责注入，会根据类型匹配
 	@Override
 	public boolean add(Dept dept) {
 		System.out.println("******** Dept业务层调用 *********");
-		return this.deptDAO.doCreate(dept); 
+		return this.deptDAO.doCreate(dept);
 	}
 
 }
