@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import cn.mldn.mldnspring.context.dao.IDeptDAO;
 import cn.mldn.mldnspring.context.vo.Dept;
 // <bean id="deptDAO" class="cn.mldn.mldnspring.context.dao.impl.DeptDAOImpl" />
-@Repository
+// @Repository
 public class DeptDAOImpl implements IDeptDAO {
 	@Override
 	public boolean doCreate(Dept dept) {
