@@ -4,6 +4,11 @@
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans 
 		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+	<bean id="deptObj" class="cn.mldn.mldnspring.di.vo.Dept">
+		<property name="deptno" value="10"/>
+		<property name="dname" value="财务部"/>
+		<property name="enable" value="off"/> 
+	</bean>
 	<!-- 在Spring中负责进行MessageImpl类对象的实例化处理，这个时候相当于使用反射机制来实例化对象 -->
 	<bean id="emp" class="cn.mldn.mldnspring.di.vo.Emp">
 		<property name="empno" value="7369"/>
@@ -13,6 +18,7 @@
 		<property name="hiredate">	<!-- 使用了内部bean -->
 			<bean class="java.util.Date"/>
 		</property>
-	</bean> 
+		<property name="dept" ref="deptObj"/>	<!-- 进行引用的配置处理 -->
+	</bean>  
 
 </beans> 
