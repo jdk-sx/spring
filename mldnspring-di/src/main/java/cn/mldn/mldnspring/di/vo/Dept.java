@@ -2,25 +2,26 @@ package cn.mldn.mldnspring.di.vo;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @SuppressWarnings("serial")
 public class Dept implements Serializable {
 	private Long deptno ;
 	private String dname ;
 	private Boolean enable ;
-	private List<Emp> emps ;
-	private List<String> infos ;
-	public void setEmps(List<Emp> emps) {
-		this.emps = emps;
-	}
-	public void setInfos(List<String> infos) {
+	private Set<String> infos ;
+	private List<String> msgs ;
+	public void setInfos(Set<String> infos) {
 		this.infos = infos;
 	}
-	public List<Emp> getEmps() {
-		return emps;
+	public void setMsgs(List<String> msgs) {
+		this.msgs = msgs;
 	}
-	public List<String> getInfos() {
+	public Set<String> getInfos() {
 		return infos;
+	}
+	public List<String> getMsgs() {
+		return msgs;
 	}
 	public Long getDeptno() {
 		return deptno;
