@@ -10,15 +10,15 @@
 			<array>	<!-- 该属性定义的是一个数组，所以现在配置的就是数组 -->
 				<ref bean="empA"/>	<!-- 进行依赖对象的引用 -->
 				<ref bean="empB"/>	<!-- 进行依赖对象的引用 -->
-			</array>
+			</array> 
 		</property>
 		<property name="infos">	<!-- 追加的是普通的字符串的数组信息 -->
-			<array>
+			<list>
 				<value>www.mldn.cn</value>
 				<value>www.mldnjava.cn</value> 
-			</array>
+			</list>
 		</property>
-	</bean> 
+	</bean>  
 	<!-- 在Spring中负责进行MessageImpl类对象的实例化处理，这个时候相当于使用反射机制来实例化对象 -->
 	<bean id="empA" class="cn.mldn.mldnspring.di.vo.Emp">
 		<property name="empno" value="7369"/>

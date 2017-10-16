@@ -13,7 +13,8 @@ public class TestDeptDemo {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring/spring-di.xml") ;
 		Dept dept = ctx.getBean("deptObj",Dept.class) ;
 		System.out.println(dept);
-		System.out.println(Arrays.toString(dept.getEmps()));
-		System.out.println(Arrays.toString(dept.getInfos()));
+		System.out.println(dept.getEmps());
+		System.out.println(dept.getInfos());
+		System.out.println(dept.getInfos().getClass().getName());
 	}
 }
