@@ -5,6 +5,14 @@
 		http://www.springframework.org/schema/beans 
 		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 	<!-- 在Spring中负责进行MessageImpl类对象的实例化处理，这个时候相当于使用反射机制来实例化对象 -->
-	<bean id="messageImpl" class="cn.mldn.mldnspring.ioc.service.impl.MessageImpl"/>
+	<bean id="emp" class="cn.mldn.mldnspring.di.vo.Emp">
+		<property name="empno" value="7369"/>
+		<property name="ename" value="allen"/>
+		<property name="salary" value="960.00"/>
+		<!-- 此时使用的是一个对象，所以可以直接进行其它bean的配置引用 -->
+		<property name="hiredate">	<!-- 使用了内部bean -->
+			<bean class="java.util.Date"/>
+		</property>
+	</bean> 
 
 </beans> 
