@@ -7,12 +7,33 @@
 		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 		http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<!-- 如果要想进行任务的处理，则一定需要有一个任务调度的工厂类 -->
+	<bean id="taskFactory" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<!-- 任务工厂里面需要明确的设置出要执行本次任务所需要的任务类，而这个任务要求继承QuartzJobBean父类 -->
+		<property name="jobClass" value="cn.mldn.mldnspring.schedule.quartz.MyTask"/>
+		<property name="jobDataMap">	<!-- 定义一些任务的相关配置信息 -->
+			<map>
+				<entry key="timeout" value="0"/>	<!-- 任务启动后不延迟，立即执行 -->
+			</map>
+		</property>
+	</bean>
+	<!-- 要定义任务触发的工厂类，主要是定义任务的执行类型 -->
+	<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+		<property name="jobDetail" ref="taskFactory"/>	<!-- 定义每一次间隔触发是要执行的具体的任务详情 -->
+		<property name="repeatInterval" value="1000"/>	<!-- 定义任务的间隔时间 -->
+	</bean>
+	<!-- 配置任务的执行调度器 -->
+	<bean id="scheduleFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<array>
+				<ref bean="simpleTrigger"/> <!-- 设置任务触发器 -->
+			</array>
+		</property>
+	</bean>
+		
 	<!-- 现在的项目要求启动Annotation注解配置，此项随着新版本的更新，不写也可以使用 -->
 	<context:annotation-config/>
 	<!-- 定义注解的扫描包，也就是说你必须配置好扫描包之后才可以扫描该包中所有类上出现的注解信息 -->
 	<!-- <context:component-scan base-package="cn.mldn.mldnspring.dao,cn.mldn.mldnspring.service"/> -->
 	<context:component-scan base-package="cn.mldn.mldnspring"/>
-	<bean id="deptServiceNew" class="cn.mldn.mldnspring.context.service.impl.DeptServiceImpl">
-		<property name="deptDAO" ref="deptDAOImpl"/>
-	</bean> 
 </beans>
