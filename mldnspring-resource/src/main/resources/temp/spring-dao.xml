@@ -6,10 +6,11 @@
 		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 	<bean id="resourceBean" class="cn.mldn.mldnspring.resource.util.DefaultResourceBean">
 		<property name="resources">
-			<array>
-				<!-- <value>classpath:temp/**/spring-*.xml</value> -->
-				<value>classpath*:**/META-INF/*.MF</value>
-			</array> 
+			<list>
+				<value>http://localhost/mldn/mldn-data.txt</value>
+				<value>classpath:spring/spring-resource.xml</value>
+				<value>file:d:/mldn.txt</value>
+			</list>
 		</property>
 	</bean> 
 </beans>  

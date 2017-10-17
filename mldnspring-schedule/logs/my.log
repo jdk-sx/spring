@@ -1,0 +1,48 @@
+2017-10-17 12:43:52,346 INFO [org.quartz.impl.StdSchedulerFactory] - Using default implementation for ThreadExecutor
+2017-10-17 12:43:52,361 INFO [org.quartz.core.SchedulerSignalerImpl] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2017-10-17 12:43:52,361 INFO [org.quartz.core.QuartzScheduler] - Quartz Scheduler v.2.3.0 created.
+2017-10-17 12:43:52,362 INFO [org.quartz.simpl.RAMJobStore] - RAMJobStore initialized.
+2017-10-17 12:43:52,362 INFO [org.quartz.core.QuartzScheduler] - Scheduler meta-data: Quartz Scheduler (v2.3.0) 'scheduleFactory' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2017-10-17 12:43:52,363 INFO [org.quartz.impl.StdSchedulerFactory] - Quartz scheduler 'scheduleFactory' initialized from an externally provided properties instance.
+2017-10-17 12:43:52,363 INFO [org.quartz.impl.StdSchedulerFactory] - Quartz scheduler version: 2.3.0
+2017-10-17 12:43:52,364 INFO [org.quartz.core.QuartzScheduler] - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@6be968ce
+2017-10-17 12:43:52,399 INFO [org.quartz.core.QuartzScheduler] - Scheduler scheduleFactory_$_NON_CLUSTERED started.
+2017-10-17 12:45:02,867 INFO [org.quartz.impl.StdSchedulerFactory] - Using default implementation for ThreadExecutor
+2017-10-17 12:45:02,882 INFO [org.quartz.core.SchedulerSignalerImpl] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2017-10-17 12:45:02,882 INFO [org.quartz.core.QuartzScheduler] - Quartz Scheduler v.2.3.0 created.
+2017-10-17 12:45:02,883 INFO [org.quartz.simpl.RAMJobStore] - RAMJobStore initialized.
+2017-10-17 12:45:02,883 INFO [org.quartz.core.QuartzScheduler] - Scheduler meta-data: Quartz Scheduler (v2.3.0) 'scheduleFactory' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2017-10-17 12:45:02,884 INFO [org.quartz.impl.StdSchedulerFactory] - Quartz scheduler 'scheduleFactory' initialized from an externally provided properties instance.
+2017-10-17 12:45:02,884 INFO [org.quartz.impl.StdSchedulerFactory] - Quartz scheduler version: 2.3.0
+2017-10-17 12:45:02,885 INFO [org.quartz.core.QuartzScheduler] - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@6be968ce
+2017-10-17 12:45:02,919 INFO [org.quartz.core.QuartzScheduler] - Scheduler scheduleFactory_$_NON_CLUSTERED started.
+2017-10-17 12:45:54,689 INFO [org.quartz.impl.StdSchedulerFactory] - Using default implementation for ThreadExecutor
+2017-10-17 12:45:54,703 INFO [org.quartz.core.SchedulerSignalerImpl] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2017-10-17 12:45:54,704 INFO [org.quartz.core.QuartzScheduler] - Quartz Scheduler v.2.3.0 created.
+2017-10-17 12:45:54,704 INFO [org.quartz.simpl.RAMJobStore] - RAMJobStore initialized.
+2017-10-17 12:45:54,705 INFO [org.quartz.core.QuartzScheduler] - Scheduler meta-data: Quartz Scheduler (v2.3.0) 'scheduleFactory' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2017-10-17 12:45:54,705 INFO [org.quartz.impl.StdSchedulerFactory] - Quartz scheduler 'scheduleFactory' initialized from an externally provided properties instance.
+2017-10-17 12:45:54,705 INFO [org.quartz.impl.StdSchedulerFactory] - Quartz scheduler version: 2.3.0
+2017-10-17 12:45:54,707 INFO [org.quartz.core.QuartzScheduler] - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@50f6ac94
+2017-10-17 12:45:54,742 INFO [org.quartz.core.QuartzScheduler] - Scheduler scheduleFactory_$_NON_CLUSTERED started.
