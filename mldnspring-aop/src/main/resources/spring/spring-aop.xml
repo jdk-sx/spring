@@ -15,6 +15,7 @@
 			<aop:after method="handleAfter" pointcut-ref="myPointcut"/>
 			<aop:after-returning method="handleReturn" pointcut-ref="myPointcut" returning="val" arg-names="val"/>
 			<aop:after-throwing method="handleThrow" pointcut-ref="myPointcut" throwing="e" arg-names="e"/>
+			<aop:around method="handleRound" pointcut-ref="myPointcut"/>
 		</aop:aspect>
 	</aop:config>
 	
