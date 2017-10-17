@@ -98,5 +98,6 @@
 		<module>mldnspring-context</module>
 		<module>mldnspring-resource</module>
 		<module>mldnspring-spel</module>
+		<module>mldnspring-schedule</module>
 	</modules>
 </project>
