@@ -11,7 +11,7 @@ import junit.framework.TestCase;
 
 @ContextConfiguration(locations = { "classpath:spring/spring-*.xml" })
 @RunWith(SpringJUnit4ClassRunner.class) // 设置要使用的测试工具
-public class TestScheduleQuartZ extends TestCase {
+public class TestScheduleTask extends TestCase {
 	@Test
 	public void testQuartZ() {
 		try {
