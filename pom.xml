@@ -129,5 +129,6 @@
 		<module>mldnspring-resource</module>
 		<module>mldnspring-spel</module>
 		<module>mldnspring-schedule</module>
+		<module>mldnspring-aop</module>
 	</modules>
 </project>

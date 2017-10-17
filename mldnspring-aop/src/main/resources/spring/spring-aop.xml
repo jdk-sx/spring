@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		
+	<!-- 定义注解的扫描包，也就是说你必须配置好扫描包之后才可以扫描该包中所有类上出现的注解信息 -->
+	<context:component-scan base-package="cn.mldn.mldnspring"/>
+	<task:annotation-driven/>	<!-- 启用Annotation的SpringTask配置 -->
+	<!-- 设置一个同时运行的线程池的大小，也就是说可以同时有两个调度任务执行 -->
+	<task:scheduler id="schedulePool" pool-size="2"/>
+</beans>
