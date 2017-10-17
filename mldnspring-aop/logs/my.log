@@ -16,3 +16,6 @@
 2017-10-17 16:24:26,034 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 1、ServiceAdvice-handleBefore ###】进行业务的前置处理操作。接收参数内容为：mldn
 2017-10-17 16:24:26,035 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 3、ServiceAdvice-handleReturn ###】业务方法执行完毕：【ECHO】msg = 假的参数我乐意传
 2017-10-17 16:24:26,035 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 2、ServiceAdvice-handleAfter ###】进行业务的后置处理操作。
+2017-10-17 16:31:45,512 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 1、ServiceAdvice-handleBefore ###】进行业务的前置处理操作。接收参数内容为：假的参数我乐意传
+2017-10-17 16:31:45,513 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 2、ServiceAdvice-handleAfter ###】进行业务的后置处理操作。
+2017-10-17 16:31:45,513 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 3、ServiceAdvice-handleReturn ###】业务方法执行完毕：【ECHO】msg = 假的参数我乐意传
