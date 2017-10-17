@@ -1,0 +1,1283 @@
+1、
+package cn.mldn.mldnspring.spel;
+
+public class TestSpelDemo01 {
+	public static void main(String[] args) {
+		String str = ("Hello " + "World").substring(6, 9) ;
+		System.out.println(str);
+	}
+}
+
+
+2、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelDemo02 {
+	public static void main(String[] args) {
+		String str = "(\"Hello \" + \"World\").substring(6, 9)" ;	// 将之前的语句都定义在了字符串里面
+		ExpressionParser parser = new SpelExpressionParser() ;	// 定义一个SpEL的语法解析器
+		Expression exp = parser.parseExpression(str) ;	// 将字符串解析为一个正常的表达式对象
+		EvaluationContext context = new StandardEvaluationContext(exp) ;	// 实现表达式的具体计算处理
+		Object value = exp.getValue(context) ;
+		System.out.println(value); 
+	}
+}
+
+
+3、
+
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelDemo03 {
+	public static void main(String[] args) {
+		String str = "(\"Hello \" + \"World\").substring(#start, #end)" ;	// 将之前的语句都定义在了字符串里面
+		ExpressionParser parser = new SpelExpressionParser() ;	// 定义一个SpEL的语法解析器
+		Expression exp = parser.parseExpression(str) ;	// 将字符串解析为一个正常的表达式对象
+		EvaluationContext context = new StandardEvaluationContext(exp) ;	// 实现表达式的具体计算处理
+		context.setVariable("start", 6);	// 定义表达式之中的变量
+		context.setVariable("end", 11);		// 定义表达式之中的变量
+		Object value = exp.getValue(context) ;
+		System.out.println(value); 
+	}
+}
+
+
+4、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelDemo04 {
+	public static void main(String[] args) {
+		String str = "1 + 2" ;	// 将之前的语句都定义在了字符串里面
+		ExpressionParser parser = new SpelExpressionParser() ;	// 定义一个SpEL的语法解析器
+		Expression exp = parser.parseExpression(str) ;	// 将字符串解析为一个正常的表达式对象
+		EvaluationContext context = new StandardEvaluationContext(exp) ;	// 实现表达式的具体计算处理
+		Object value = exp.getValue(context) ;
+		System.out.println(value); 
+	}
+}
+
+
+5、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelDemo04 {
+	public static void main(String[] args) {
+		String str = "1.1 + 2.2" ;	// 将之前的语句都定义在了字符串里面
+		ExpressionParser parser = new SpelExpressionParser() ;	// 定义一个SpEL的语法解析器
+		Expression exp = parser.parseExpression(str) ;	// 将字符串解析为一个正常的表达式对象
+		EvaluationContext context = new StandardEvaluationContext(exp) ;// 实现表达式的具体计算处理
+		Object value = exp.getValue(context) ;
+		System.out.println(value); 
+	}
+}
+
+
+6、
+
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.ParserContext;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelDemo05 {
+	public static void main(String[] args) {
+		String str = "#[1.1 + 2.2]" ;	// 将之前的语句都定义在了字符串里面
+		ExpressionParser parser = new SpelExpressionParser() ;	// 定义一个SpEL的语法解析器
+		Expression exp = parser.parseExpression(str,new ParserContext() {
+			@Override 
+			public boolean isTemplate() {	// 是否使用此分割符处理模版
+				return true ;
+			}
+			@Override
+			public String getExpressionPrefix() {	// 设置分隔符的开始字符串
+				return "#[";
+			}
+			@Override
+			public String getExpressionSuffix() {	// 设置分割符的结束字符串
+				return "]";
+			}}) ;	// 将字符串解析为一个正常的表达式对象
+		EvaluationContext context = new StandardEvaluationContext(exp) ;// 实现表达式的具体计算处理
+		Object value = exp.getValue(context) ;
+		System.out.println(value); 
+	}
+}
+
+
+7、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+		String str = "'Hello ' + 'World'" ;
+		ExpressionParser parser = new SpelExpressionParser() ;
+		Expression exp = parser.parseExpression(str) ;
+		EvaluationContext context = new StandardEvaluationContext(exp) ;
+		Object value = exp.getValue(context) ;
+		System.out.println(value); 
+	}
+}
+
+
+8、
+
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+	String str = "\"Hello \" + \"World\"" ;
+	ExpressionParser parser = new SpelExpressionParser() ;
+	Expression exp = parser.parseExpression(str) ;
+	EvaluationContext context = new StandardEvaluationContext(exp) ;
+	Object value = exp.getValue(context) ;
+	System.out.println(value); 
+	}
+}
+
+9、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+	String str = "1" ;
+	ExpressionParser parser = new SpelExpressionParser() ;
+	Expression exp = parser.parseExpression(str) ;
+	EvaluationContext context = new StandardEvaluationContext(exp) ;
+	Object value = exp.getValue(context) ;
+	System.out.println(value); 
+	}
+}
+
+
+10、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+	String str = "1.1" ;
+	ExpressionParser parser = new SpelExpressionParser() ;
+	Expression exp = parser.parseExpression(str) ;
+	EvaluationContext context = new StandardEvaluationContext(exp) ;
+	Object value = exp.getValue(context) ;
+	System.out.println(value); 
+	}
+}
+
+
+11、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+	String str = "1.1E10" ;
+	ExpressionParser parser = new SpelExpressionParser() ;
+	Expression exp = parser.parseExpression(str) ;
+	EvaluationContext context = new StandardEvaluationContext(exp) ;
+	Object value = exp.getValue(context) ;
+	System.out.println(value); 
+	}
+}
+
+
+12、
+
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+		String str = "1.1E10" ;
+		ExpressionParser parser = new SpelExpressionParser() ;
+		Expression exp = parser.parseExpression(str) ;
+		EvaluationContext context = new StandardEvaluationContext(exp) ;
+		Object value = exp.getValue(context) ;
+		Double num = (Double) value ;
+		System.out.printf("%11.2f",num); 
+	}
+}
+
+
+13、
+
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+	String str = "true" ;
+	ExpressionParser parser = new SpelExpressionParser() ;
+	Expression exp = parser.parseExpression(str) ;
+	EvaluationContext context = new StandardEvaluationContext(exp) ;
+	Object value = exp.getValue(context) ;
+	System.out.println(value); 
+	}
+}
+
+14、
+
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+	String str = "null" ;
+	ExpressionParser parser = new SpelExpressionParser() ;
+	Expression exp = parser.parseExpression(str) ;
+	EvaluationContext context = new StandardEvaluationContext(exp) ;
+	Object value = exp.getValue(context) ;
+	System.out.println(value.toString()); 
+	}
+}
+
+
+15、
+
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+		String str = "1 + 2 - 3 * 4 / 5";
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Object value = exp.getValue(context);
+		System.out.println(value.toString());
+	}
+}
+
+
+16、
+
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+		String str = "10 % 3";
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Object value = exp.getValue(context);
+		System.out.println(value.toString());
+	}
+}
+
+
+17、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+		String str = "10 mod 3";
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Object value = exp.getValue(context);
+		System.out.println(value.toString());
+	}
+}
+
+
+18、
+
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+		String str = "10 ^ 3";
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Object value = exp.getValue(context);
+		System.out.println(value.toString());
+	}
+}
+
+
+19、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+		String str = "10 DIV 3";
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Object value = exp.getValue(context);
+		System.out.println(value.toString());
+	}
+}
+
+
+20、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+		String str = "10 == 10";
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Object value = exp.getValue(context);
+		System.out.println(value.toString());
+	}
+}
+
+
+21、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+		String str = "10 BETWEEN {5,20}"; 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Object value = exp.getValue(context);
+		System.out.println(value.toString());
+	}
+}
+
+
+22、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+		String str = "'a' == 'a' && 10 > 5"; 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Object value = exp.getValue(context);
+		System.out.println(value.toString());
+	}
+}
+
+
+23、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+		String str = "NOT('a' == 'a' && 10 > 5)"; 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Object value = exp.getValue(context);
+		System.out.println(value.toString());
+	}
+}
+
+
+24、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+		String str = "1 EQ 1 OR (2 GT 1 AND NOT('a' == 'a' && 10 > 5))"; 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Object value = exp.getValue(context);
+		System.out.println(value.toString());
+	}
+}
+
+
+25、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+		String str = "'helloworld'[1]"; 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Object value = exp.getValue(context);
+		System.out.println(value.toString());
+	}
+}
+
+
+26、
+
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+		String str = "'helloworld'.toUpperCase()"; 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Object value = exp.getValue(context);
+		System.out.println(value.toString());
+	}
+}
+
+
+27、、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+		String str = "'helloworld'.toUpperCase().replaceAll('L','_')"; 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Object value = exp.getValue(context);
+		System.out.println(value.toString());
+	}
+}
+
+
+28、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+		String str = "1 > 2 ? 'Hello' : \"World\""; 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Object value = exp.getValue(context);
+		System.out.println(value.toString());
+	}
+}
+
+
+29、
+
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+		String str = "null == null ? 'Hello' : \"World\""; 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Object value = exp.getValue(context);
+		System.out.println(value.toString());
+	}
+}
+
+
+30、
+
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+		String str = "'mldn' ?: \"World\""; 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Object value = exp.getValue(context);
+		System.out.println(value.toString());
+	}
+}
+
+
+31、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelSimpleDemo {
+	public static void main(String[] args) {
+		String str = "'100' matches '\\d{3}'"; 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Object value = exp.getValue(context);
+		System.out.println(value.toString());
+	}
+}
+
+
+32、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelClassDemo01 {
+	public static void main(String[] args) {
+		String str = "T(String)"; 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Class<?> cls = exp.getValue(context,Class.class);
+		System.out.println(cls.getName());
+	}
+}
+
+
+33、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelClassDemo01 {
+	public static void main(String[] args) {
+		String str = "T(java.util.Date)"; 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Class<?> cls = exp.getValue(context,Class.class);
+		System.out.println(cls.getName());
+	}
+}
+
+
+34、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+ 
+public class TestSpelClassDemo02 {
+	public static void main(String[] args) throws Exception {
+		String str = "T(Integer).MAX_VALUE"; 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Integer num = exp.getValue(context,Integer.class);
+		System.out.println(num);
+	} 
+}
+
+
+35、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+ 
+public class TestSpelClassDemo03 {
+	public static void main(String[] args) throws Exception {
+		String str = "T(Integer).parseInt('123')"; 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Integer num = exp.getValue(context,Integer.class);
+		System.out.println(num);
+	} 
+}
+
+
+36、
+package cn.mldn.mldnspring.spel;
+
+import java.util.Date;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+ 
+public class TestSpelClassDemo04 {
+	public static void main(String[] args) throws Exception {
+		String str = "new java.util.Date()"; 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		Date num = exp.getValue(context,Date.class);
+		System.out.println(num); 
+	} 
+}
+
+
+37、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+ 
+public class TestSpelClassDemo05 {
+	public static void main(String[] args) throws Exception {
+		String str = "'hello' instanceof T(String)"; 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		System.out.println(exp.getValue(context)); 
+	} 
+}
+
+
+38、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelVarDemo01 {
+	public static void main(String[] args) throws Exception {
+		String str = "#myvar1 + #myvar2";	// 定义了两个变量 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		context.setVariable("myvar1", "Hello ");
+		context.setVariable("myvar2", "World ");
+		Class<?> cls = exp.getValue(context,Class.class);
+		System.out.println(cls.newInstance());
+	} 
+}
+
+
+39、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelVarDemo01 {
+	public static void main(String[] args) throws Exception {
+		String str = "#myvar1 + #myvar2";	// 定义了两个变量 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		context.setVariable("myvar1", "Hello ");
+		context.setVariable("myvar2", "World ");
+		System.out.println(exp.getValue(context)); 
+	} 
+}
+
+
+40、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelVarDemo01 {
+	public static void main(String[] args) throws Exception {
+		String str = "#myvar1 + #myvar2";	// 定义了两个变量 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);
+		EvaluationContext context = new StandardEvaluationContext(exp);
+		context.setVariable("myvar1", 10);
+		context.setVariable("myvar2", 20);
+		System.out.println(exp.getValue(context)); 
+	} 
+}
+
+
+41、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelVarDemo02 {
+	public static void main(String[] args) throws Exception {
+		String str = "#root";	// 定义了两个变量 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);	// 设置了一个自定义的根变量
+		// 为这个根变量直接执行赋值处理操作
+		EvaluationContext context = new StandardEvaluationContext("Hello World");
+		System.out.println(exp.getValue(context)); 
+	} 
+} 
+
+
+42、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelVarDemo03 {
+	public static void main(String[] args) throws Exception {
+		String str = "#root=='mldn' ? '你好MLDN' : '大家好'";	// 定义了两个变量 
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);	// 设置了一个自定义的根变量
+		// 为这个根变量直接执行赋值处理操作
+		EvaluationContext context = new StandardEvaluationContext("mldn");
+		System.out.println(exp.getValue(context)); 
+	} 
+} 
+
+
+43、
+package cn.mldn.mldnspring.spel;
+
+import java.lang.reflect.Method;
+
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelVarDemo04 {
+	public static void main(String[] args) throws Exception {
+		String str = "#myInt('123')";	// 其中myInt表示的就是方法引用设置的别名 
+		Method method = Integer.class.getMethod("parseInt", String.class) ;	// 获取该方法引用的反射对象
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);	// 设置了一个自定义的根变量
+		// 为这个根变量直接执行赋值处理操作
+		StandardEvaluationContext context = new StandardEvaluationContext();
+		context.registerFunction("myInt", method); // 为myInt设置一个引用的具体方法
+		System.out.println(exp.getValue(context)); 
+	} 
+} 
+
+
+44、
+package cn.mldn.mldnspring.spel;
+
+import java.util.Date;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelVarDemo05 {
+	public static void main(String[] args) throws Exception {
+		String str = "time";	// Date类中的getTime()方法
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);	// 设置了一个自定义的根变量
+		// 为这个根变量直接执行赋值处理操作
+		EvaluationContext context = new StandardEvaluationContext(new Date());
+		System.out.println(exp.getValue(context)); 
+		System.out.println(System.currentTimeMillis());
+	} 
+} 
+
+
+45、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelVarDemo06 {
+	public static void main(String[] args) throws Exception {
+		String str = "#root?.time";	// Date类中的getTime()方法
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);	// 设置了一个自定义的根变量
+		// 为这个根变量直接执行赋值处理操作
+		// EvaluationContext context = new StandardEvaluationContext(new java.util.Date());
+		EvaluationContext context = new StandardEvaluationContext();
+		System.out.println(exp.getValue(context)); 
+	} 
+} 
+
+
+46、
+
+package cn.mldn.mldnspring.spel;
+
+import java.util.List;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelCollectionDemo01 {
+	public static void main(String[] args) throws Exception {
+		String str = "{10,20,30}";	// 表示集合中的数据
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);	// 设置了一个自定义的根变量
+		EvaluationContext context = new StandardEvaluationContext();
+		List<Integer> all = exp.getValue(context,List.class) ;
+		// java.lang.UnsupportedOperationException
+		all.add(50) ;	// 进行新的数据追加
+	} 
+} 
+
+
+47、
+package cn.mldn.mldnspring.spel;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelCollectionDemo02 {
+	public static void main(String[] args) throws Exception {
+		String str = "{10,20,30}[1]";	// 表示集合中的数据
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);	// 设置了一个自定义的根变量
+		EvaluationContext context = new StandardEvaluationContext();
+		System.out.println(exp.getValue(context));
+	} 
+} 
+
+
+48、
+package cn.mldn.mldnspring.spel;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelCollectionDemo03 {
+	public static void main(String[] args) throws Exception {
+		List<String> all = new ArrayList<String>() ;
+		all.add("hello") ;
+		all.add("world") ;
+		all.add("mldn") ;
+		String str = "#allData[1]";	// 表示集合中的数据
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);	// 设置了一个自定义的根变量
+		EvaluationContext context = new StandardEvaluationContext();
+		context.setVariable("allData", all); // 将自定义的集合设置进来
+		System.out.println(exp.getValue(context));
+	} 
+} 
+
+
+49、
+package cn.mldn.mldnspring.spel;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelCollectionDemo04 {
+	public static void main(String[] args) throws Exception {
+		Set<String> all = new HashSet<String>() ;
+		all.add("hello") ;
+		all.add("world") ; 
+		all.add("mldn") ;
+		String str = "#allData[1]";	// 表示集合中的数据
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);	// 设置了一个自定义的根变量
+		EvaluationContext context = new StandardEvaluationContext();
+		context.setVariable("allData", all); // 将自定义的集合设置进来
+		System.out.println(exp.getValue(context));
+	} 
+} 
+
+
+50、
+package cn.mldn.mldnspring.spel;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelCollectionDemo05 {
+	public static void main(String[] args) throws Exception {
+		Map<String,String> all = new HashMap<String,String>() ;
+		all.put("mldn", "www.mldn.cn") ;
+		all.put("mldnjava", "www.mldnjava.cn") ;
+		String str = "#allData['mldn']";	// 表示集合中的数据
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);	// 设置了一个自定义的根变量
+		EvaluationContext context = new StandardEvaluationContext();
+		context.setVariable("allData", all); // 将自定义的集合设置进来
+		System.out.println(exp.getValue(context));
+	} 
+} 
+
+
+51、
+package cn.mldn.mldnspring.spel;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelCollectionDemo06 {
+	public static void main(String[] args) throws Exception {
+		List<String> all = new ArrayList<String>() ;
+		all.add("hello") ;
+		all.add("world") ;
+		all.add("mldn") ;
+		String str = "#allData[1]='www.mldn.cn'";	// 修改集合中的数据
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);	// 设置了一个自定义的根变量
+		EvaluationContext context = new StandardEvaluationContext();
+		context.setVariable("allData", all); // 将自定义的集合设置进来
+		System.out.println(exp.getValue(context));
+	} 
+} 
+
+
+52、
+package cn.mldn.mldnspring.spel;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelCollectionDemo07 {
+	public static void main(String[] args) throws Exception {
+		Map<String,String> all = new HashMap<String,String>() ;
+		all.put("mldn", "www.mldn.cn") ;
+		all.put("mldnjava", "www.mldnjava.cn") ;
+		String str = "#allData['mldn']='欢迎访问mldn'";	// 表示集合中的数据
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);	// 设置了一个自定义的根变量
+		EvaluationContext context = new StandardEvaluationContext();
+		context.setVariable("allData", all); // 将自定义的集合设置进来
+		System.out.println(exp.getValue(context));
+	} 
+} 
+
+
+53、
+package cn.mldn.mldnspring.spel;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelCollectionDemo08 {
+	public static void main(String[] args) throws Exception {
+		List<String> all = new ArrayList<String>() ;
+		all.add("hello") ;
+		all.add("world") ;
+		all.add("mldn") ;
+		String str = "#allData.!['问候语：' + #this]";	// 修改集合中的数据
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);	// 设置了一个自定义的根变量
+		EvaluationContext context = new StandardEvaluationContext();
+		context.setVariable("allData", all); // 将自定义的集合设置进来
+		System.out.println(exp.getValue(context));
+	}  
+} 
+
+
+54、
+package cn.mldn.mldnspring.spel;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelCollectionDemo09 {
+	public static void main(String[] args) throws Exception {
+		Map<String,String> all = new HashMap<String,String>() ;
+		all.put("mldn", "www.mldn.cn") ;
+		all.put("mldnjava", "www.mldnjava.cn") ;
+		// 整个的处理之中就将Map.Entry隐含了
+		String str = "#allData.![#this.key + ' - ' + #this.value]";	// 表示集合中的数据
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);	// 设置了一个自定义的根变量
+		EvaluationContext context = new StandardEvaluationContext();
+		context.setVariable("allData", all); // 将自定义的集合设置进来
+		System.out.println(exp.getValue(context));	// 此时是一个List集合
+	} 
+} 
+
+
+55、
+package cn.mldn.mldnspring.spel;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class TestSpelCollectionDemo10 {
+	public static void main(String[] args) throws Exception {
+		Map<String,String> all = new HashMap<String,String>() ;
+		all.put("mldn", "www.mldn.cn") ;
+		all.put("mldnjava", "www.mldnjava.cn") ;
+		// 整个的处理之中就将Map.Entry隐含了
+		String str = "#allData.![#this.key.contains('java')]";	// 表示集合中的数据
+		ExpressionParser parser = new SpelExpressionParser();
+		Expression exp = parser.parseExpression(str);	// 设置了一个自定义的根变量
+		EvaluationContext context = new StandardEvaluationContext();
+		context.setVariable("allData", all); // 将自定义的集合设置进来
+		System.out.println(exp.getValue(context));	// 此时是一个List集合
+	} 
+} 
+
+56、
+package cn.mldn.mldnspring.spel.vo;
+
+import java.io.Serializable;
+import java.util.Date;
+
+@SuppressWarnings("serial")
+public class Book implements Serializable {
+	private String title ;
+	private String pub ;	// 出版社
+	private Date pubdate ;	// 出版日期
+}
+
+
+57、
+	<bean id="pubstr" class="java.lang.String">
+		<constructor-arg value="mldn出版社"/>
+	</bean>
+	<bean id="book" class="cn.mldn.mldnspring.spel.vo.Book">
+		<property name="title" value="Java开发实战"/>
+		<property name="pub" value="#{pubstr.toUpperCase()}"/>
+		<property name="pubdate" value="#{new java.util.Date()}"/> 
+	</bean>
+
+
+58、
+package cn.mldn.mldnspring.spel.test;
+import javax.annotation.Resource;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import cn.mldn.mldnspring.spel.vo.Book;
+@ContextConfiguration(locations = { "classpath:spring/spring-*.xml" }) // 进行资源文件定位
+@RunWith(SpringJUnit4ClassRunner.class) // 设置要使用的测试工具
+public class TestBook {
+	@Resource
+	private Book book ;
+	@Test  
+	public void testPrint() {
+		System.out.println(this.book);
+	}
+}
+
