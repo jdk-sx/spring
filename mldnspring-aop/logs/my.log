@@ -2,3 +2,5 @@
 2017-10-17 15:43:22,149 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### ServiceAdvice-handleAfter ###】进行业务的后置处理操作。
 2017-10-17 15:47:22,590 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### ServiceAdvice-handleBefore ###】进行业务的前置处理操作。
 2017-10-17 15:47:22,590 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### ServiceAdvice-handleAfter ###】进行业务的后置处理操作。
+2017-10-17 16:02:53,826 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### ServiceAdvice-handleBefore ###】进行业务的前置处理操作。接收参数内容为：www.mldn.cn
+2017-10-17 16:02:53,826 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### ServiceAdvice-handleAfter ###】进行业务的后置处理操作。
