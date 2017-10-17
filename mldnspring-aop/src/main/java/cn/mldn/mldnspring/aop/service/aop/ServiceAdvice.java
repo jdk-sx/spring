@@ -10,6 +10,11 @@ public class ServiceAdvice { // 随意定义的一个类的名称
 				.info("【### 1、ServiceAdvice-handleBefore ###】进行业务的前置处理操作。接收参数内容为：" + tempMsg); // 进行日志输出
 	}
 	
+	public void handleThrow(Exception exp) { // 异常处理通知
+		LoggerFactory.getLogger(ServiceAdvice.class)
+				.info("【### 4、ServiceAdvice-handleThrow ###】方法执行产生了异常：" + exp);
+	}
+	
 	public void handleReturn(String retMsg) { // 处理返回通知
 		LoggerFactory.getLogger(ServiceAdvice.class)
 				.info("【### 3、ServiceAdvice-handleReturn ###】业务方法执行完毕：" + retMsg); // 进行日志输出

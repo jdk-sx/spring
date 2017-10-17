@@ -17,6 +17,6 @@ public class TestAOPDemo extends TestCase {
 	private IMessageService messageService ;
 	@Test
 	public void test() {
-		System.out.println(this.messageService.echo("www.mldn.cn"));
+		System.out.println(this.messageService.echo("mldn"));
 	}
 }
