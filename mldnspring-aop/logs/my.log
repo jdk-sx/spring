@@ -1,0 +1,21 @@
+2017-10-17 15:43:22,149 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### ServiceAdvice-handleBefore ###】进行业务的前置处理操作。
+2017-10-17 15:43:22,149 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### ServiceAdvice-handleAfter ###】进行业务的后置处理操作。
+2017-10-17 15:47:22,590 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### ServiceAdvice-handleBefore ###】进行业务的前置处理操作。
+2017-10-17 15:47:22,590 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### ServiceAdvice-handleAfter ###】进行业务的后置处理操作。
+2017-10-17 16:02:53,826 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### ServiceAdvice-handleBefore ###】进行业务的前置处理操作。接收参数内容为：www.mldn.cn
+2017-10-17 16:02:53,826 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### ServiceAdvice-handleAfter ###】进行业务的后置处理操作。
+2017-10-17 16:07:16,503 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 1、ServiceAdvice-handleBefore ###】进行业务的前置处理操作。接收参数内容为：www.mldn.cn
+2017-10-17 16:07:16,504 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 2、ServiceAdvice-handleAfter ###】进行业务的后置处理操作。
+2017-10-17 16:07:16,505 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 3、ServiceAdvice-handleReturn ###】业务方法执行完毕：【ECHO】msg = www.mldn.cn
+2017-10-17 16:13:59,959 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 1、ServiceAdvice-handleBefore ###】进行业务的前置处理操作。接收参数内容为：www.mldn.cn
+2017-10-17 16:13:59,961 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 2、ServiceAdvice-handleAfter ###】进行业务的后置处理操作。
+2017-10-17 16:13:59,961 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 3、ServiceAdvice-handleReturn ###】业务方法执行完毕：【ECHO】msg = www.mldn.cn
+2017-10-17 16:14:15,451 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 1、ServiceAdvice-handleBefore ###】进行业务的前置处理操作。接收参数内容为：mldn
+2017-10-17 16:14:15,453 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 2、ServiceAdvice-handleAfter ###】进行业务的后置处理操作。
+2017-10-17 16:14:15,453 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 4、ServiceAdvice-handleThrow ###】方法执行产生了异常：java.lang.RuntimeException: 用户输入了非法的数据信息，无法进行正确的消息回应处理。
+2017-10-17 16:24:26,034 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 1、ServiceAdvice-handleBefore ###】进行业务的前置处理操作。接收参数内容为：mldn
+2017-10-17 16:24:26,035 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 3、ServiceAdvice-handleReturn ###】业务方法执行完毕：【ECHO】msg = 假的参数我乐意传
+2017-10-17 16:24:26,035 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 2、ServiceAdvice-handleAfter ###】进行业务的后置处理操作。
+2017-10-17 16:31:45,512 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 1、ServiceAdvice-handleBefore ###】进行业务的前置处理操作。接收参数内容为：假的参数我乐意传
+2017-10-17 16:31:45,513 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 2、ServiceAdvice-handleAfter ###】进行业务的后置处理操作。
+2017-10-17 16:31:45,513 INFO [cn.mldn.mldnspring.aop.service.aop.ServiceAdvice] - 【### 3、ServiceAdvice-handleReturn ###】业务方法执行完毕：【ECHO】msg = 假的参数我乐意传
