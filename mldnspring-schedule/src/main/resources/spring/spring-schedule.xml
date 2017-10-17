@@ -17,16 +17,16 @@
 			</map>
 		</property>
 	</bean>
-	<!-- 要定义任务触发的工厂类，主要是定义任务的执行类型 -->
-	<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+	<!-- 要定义任务触发的工厂类，使用CRON进行任务的触发操作 -->
+	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="taskFactory"/>	<!-- 定义每一次间隔触发是要执行的具体的任务详情 -->
-		<property name="repeatInterval" value="1000"/>	<!-- 定义任务的间隔时间 -->
+		<property name="cronExpression" value="* * * * * ?"/>	<!-- 设置任务的触发时间 -->
 	</bean>
 	<!-- 配置任务的执行调度器 -->
 	<bean id="scheduleFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
 			<array>
-				<ref bean="simpleTrigger"/> <!-- 设置任务触发器 -->
+				<ref bean="cronTrigger"/> <!-- 设置任务触发器 -->
 			</array>
 		</property>
 	</bean>
