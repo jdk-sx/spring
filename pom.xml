@@ -27,7 +27,32 @@
 		<jdk.version>1.8</jdk.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- 【AFTER】基础的pom环境属性【AFTER】 -->
+		<profiles.dir>src/main/profiles</profiles.dir>
+		<resources.dir>src/main/resources</resources.dir>
 	</properties>
+	<profiles>	<!-- 明确的进行具体的资源名称的配置，这个名称是在maven打包的时候使用的名称 -->
+		<profile>
+			<id>dev</id>
+			<properties>
+				<profile.dir>${profiles.dir}/dev</profile.dir>
+			</properties>
+			<activation>	<!-- 如果在编译的时候没有设置任何的profile名字，则此配置生效 -->
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>beta</id>
+			<properties>
+				<profile.dir>${profiles.dir}/beta</profile.dir>
+			</properties>
+		</profile>
+		<profile>
+			<id>product</id>
+			<properties>
+				<profile.dir>${profiles.dir}/product</profile.dir>
+			</properties>
+		</profile>
+	</profiles>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -118,6 +143,17 @@
 	</dependencyManagement>
 	<build>
 		<finalName>mldnspring</finalName>
+		<resources>
+			<resource>
+				<!-- 此处的属性是profile中统一定义的路径的名称，不同的配置文件有不同的子目录 -->
+				<directory>${profile.dir}</directory>
+				<filtering>false</filtering>
+			</resource>
+			<resource>
+				<directory>${resources.dir}</directory>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

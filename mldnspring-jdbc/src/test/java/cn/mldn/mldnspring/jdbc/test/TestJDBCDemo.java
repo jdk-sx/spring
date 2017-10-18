@@ -19,10 +19,12 @@ import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 
 import cn.mldn.mldnspring.jdbc.vo.News;
 import junit.framework.TestCase;
@@ -34,6 +36,7 @@ public class TestJDBCDemo extends TestCase {
 	private JdbcTemplate jdbcTemplate; // 注入JdbcTemplate对象
 	@Test
 	public void testSelectCount() {
+		
 		String column = "title";
 		String keyWord = "中国";
 		String sql = "SELECT COUNT(*) FROM news WHERE " + column + " LIKE ?";
