@@ -15,6 +15,7 @@
 		<spring.version>5.0.0.RELEASE</spring.version>
 		<!-- 【AFTER】配置Spring的版本管理【AFTER】 -->
 		<!-- 【BEFORE】其它开发包的版本管理【BEFORE】 -->
+		<mysql.version>5.1.25</mysql.version>
 		<junit.version>4.12</junit.version>
 		<quartz.version>2.3.0</quartz.version>
 		<log4j.version>2.9.1</log4j.version>
@@ -57,16 +58,28 @@
 				<scope>test</scope>
 			</dependency>
 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aop</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aspects</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aspects</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>org.springframework</groupId>
