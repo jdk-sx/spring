@@ -142,5 +142,6 @@
 		<module>mldnspring-spel</module>
 		<module>mldnspring-schedule</module>
 		<module>mldnspring-aop</module>
+		<module>mldnspring-jdbc</module>
 	</modules>
 </project>
