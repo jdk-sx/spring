@@ -231,5 +231,6 @@
 		<module>mldnspring-ws-server</module>
 		<module>mldnspring-ws-client</module>
 		<module>mldnspring-ws-api</module>
+		<module>mldnspring-mvc</module>
 	</modules>
 </project>
