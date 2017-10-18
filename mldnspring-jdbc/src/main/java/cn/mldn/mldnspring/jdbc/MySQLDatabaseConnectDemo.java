@@ -8,6 +8,7 @@ public class MySQLDatabaseConnectDemo {
 	public static final String USERNAME = "root" ;
 	public static final String PASSWORD = "mysqladmin" ;
 	public static void main(String[] args) throws Exception {
+		
 		DriverManagerDataSource dataSource = new DriverManagerDataSource() ;
 		dataSource.setDriverClassName(DRIVER); 
 		dataSource.setUrl(URL);
