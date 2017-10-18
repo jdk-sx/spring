@@ -11,14 +11,17 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
+		<mldnspring.version>0.0.1-SNAPSHOT</mldnspring.version>
 		<!-- 【BEFORE】配置Spring的版本管理【BEFORE】 -->
 		<spring.version>5.0.0.RELEASE</spring.version>
 		<!-- 【AFTER】配置Spring的版本管理【AFTER】 -->
 		<!-- 【BEFORE】其它开发包的版本管理【BEFORE】 -->
+		<mysql.version>5.1.5</mysql.version>
 		<junit.version>4.12</junit.version>
 		<quartz.version>2.3.0</quartz.version>
 		<log4j.version>2.9.1</log4j.version>
 		<slf4j.version>1.7.25</slf4j.version>
+		<cxf.version>3.2.0</cxf.version>
 		<!-- 【AFTER】其它开发包的版本管理【AFTER】 -->
 		<!-- 【BEFORE】基础的pom环境属性【BEFORE】 -->
 		<compiler.version>3.6.1</compiler.version>
@@ -26,9 +29,59 @@
 		<jdk.version>1.8</jdk.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- 【AFTER】基础的pom环境属性【AFTER】 -->
+		<profiles.dir>src/main/profiles</profiles.dir>
+		<resources.dir>src/main/resources</resources.dir>
 	</properties>
+	<profiles>	<!-- 明确的进行具体的资源名称的配置，这个名称是在maven打包的时候使用的名称 -->
+		<profile>
+			<id>dev</id>
+			<properties>
+				<profile.dir>${profiles.dir}/dev</profile.dir>
+			</properties>
+			<activation>	<!-- 如果在编译的时候没有设置任何的profile名字，则此配置生效 -->
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>beta</id>
+			<properties>
+				<profile.dir>${profiles.dir}/beta</profile.dir>
+			</properties>
+		</profile>
+		<profile>
+			<id>product</id>
+			<properties>
+				<profile.dir>${profiles.dir}/product</profile.dir>
+			</properties>
+		</profile>
+	</profiles>
 	<dependencyManagement>
 		<dependencies>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http-jetty</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		
+		
+		
+			<dependency>
+				<groupId>cn.mldn</groupId>
+				<artifactId>mldnspring-ws-api</artifactId>
+				<version>${mldnspring.version}</version>
+			</dependency>
+		
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-core</artifactId>
@@ -57,16 +110,36 @@
 				<scope>test</scope>
 			</dependency>
 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aop</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aspects</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aspects</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>org.springframework</groupId>
@@ -105,6 +178,17 @@
 	</dependencyManagement>
 	<build>
 		<finalName>mldnspring</finalName>
+		<resources>
+			<resource>
+				<!-- 此处的属性是profile中统一定义的路径的名称，不同的配置文件有不同的子目录 -->
+				<directory>${profile.dir}</directory>
+				<filtering>false</filtering>
+			</resource>
+			<resource>
+				<directory>${resources.dir}</directory>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -142,5 +226,10 @@
 		<module>mldnspring-spel</module>
 		<module>mldnspring-schedule</module>
 		<module>mldnspring-aop</module>
+		<module>mldnspring-jdbc</module>
+		<module>mldnspring-transaction</module>
+		<module>mldnspring-ws-server</module>
+		<module>mldnspring-ws-client</module>
+		<module>mldnspring-ws-api</module>
 	</modules>
 </project>

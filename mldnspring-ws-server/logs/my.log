@@ -1,0 +1,11 @@
+2017-10-18 15:29:12,884 INFO [org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean] - Creating Service {http://impl.service.remote.mldn.cn/}messageService from class cn.mldn.remote.service.IMessageService
+2017-10-18 15:29:13,332 INFO [org.apache.cxf.endpoint.ServerImpl] - Setting the server's publish address to be http://192.168.28.87:7777/message
+2017-10-18 15:29:13,351 INFO [org.eclipse.jetty.util.log] - Logging initialized @2276ms to org.eclipse.jetty.util.log.Slf4jLog
+2017-10-18 15:29:13,392 INFO [org.eclipse.jetty.server.Server] - jetty-9.4.6.v20170531
+2017-10-18 15:29:13,407 WARN [org.eclipse.jetty.server.handler.AbstractHandler] - No Server set for org.apache.cxf.transport.http_jetty.JettyHTTPServerEngine$1@475835b1
+2017-10-18 15:29:13,430 INFO [org.eclipse.jetty.server.AbstractConnector] - Started ServerConnector@452ba1db{HTTP/1.1,[http/1.1]}{192.168.28.87:7777}
+2017-10-18 15:29:13,430 INFO [org.eclipse.jetty.server.Server] - Started @2357ms
+2017-10-18 15:29:13,437 WARN [org.eclipse.jetty.server.handler.ContextHandler] - Empty contextPath
+2017-10-18 15:29:13,451 INFO [org.eclipse.jetty.server.handler.ContextHandler] - Started o.e.j.s.h.ContextHandler@4204541c{/,null,AVAILABLE}
+2017-10-18 15:29:13,505 INFO [org.eclipse.jetty.server.handler.ContextHandler] - Stopped o.e.j.s.h.ContextHandler@4204541c{/,null,UNAVAILABLE}
+2017-10-18 15:29:13,515 INFO [org.eclipse.jetty.server.AbstractConnector] - Stopped ServerConnector@452ba1db{HTTP/1.1,[http/1.1]}{192.168.28.87:7777}
