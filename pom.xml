@@ -11,6 +11,7 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
+		<mldnspring.version>0.0.1-SNAPSHOT</mldnspring.version>
 		<!-- 【BEFORE】配置Spring的版本管理【BEFORE】 -->
 		<spring.version>5.0.0.RELEASE</spring.version>
 		<!-- 【AFTER】配置Spring的版本管理【AFTER】 -->
@@ -55,6 +56,12 @@
 	</profiles>
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>cn.mldn</groupId>
+				<artifactId>mldnspring-ws-api</artifactId>
+				<version>${mldnspring.version}</version>
+			</dependency>
+		
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-core</artifactId>
@@ -201,5 +208,8 @@
 		<module>mldnspring-aop</module>
 		<module>mldnspring-jdbc</module>
 		<module>mldnspring-transaction</module>
+		<module>mldnspring-ws-server</module>
+		<module>mldnspring-ws-client</module>
+		<module>mldnspring-ws-api</module>
 	</modules>
 </project>
