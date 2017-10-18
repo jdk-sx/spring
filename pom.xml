@@ -192,5 +192,6 @@
 		<module>mldnspring-schedule</module>
 		<module>mldnspring-aop</module>
 		<module>mldnspring-jdbc</module>
+		<module>mldnspring-transaction</module>
 	</modules>
 </project>
