@@ -8,6 +8,7 @@
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
 		<config>src/main/resources/spring/spring-common.xml</config>
+		<config>src/main/profiles/cn/mldn/message/pages.properties</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
