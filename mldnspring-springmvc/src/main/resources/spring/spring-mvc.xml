@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- 配置SpringMVC里面要使用的各项资源 -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">	<!-- 定义所有的BaseName名称 -->
+			<array>
+				<value>cn.mldn.message.pages</value>
+				<value>cn.mldn.message.messages</value>
+			</array>
+		</property>
+	</bean>	 
+	
+	<!-- 启动一个视图访问的解析处理器，该操作会自动在容器中加载，不需要做任何的依赖配置 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/pages/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	<!-- 进行所有静态WEB资源的映射路径配置 -->
+	<mvc:resources location="/WEB-INF/js/" mapping="/mvcjs/**"/>
+	<mvc:resources location="/WEB-INF/css/" mapping="/mvccss/**"/>
+	<mvc:resources location="/WEB-INF/images/" mapping="/mvcimages/**"/>
+	
+	
+	<context:annotation-config/>	<!-- 启用注解配置 -->
+	<context:component-scan base-package="cn.mldn.mldnspring"/>
+	<mvc:annotation-driven/>	<!-- 启用SpringMVC注解配置支持 -->
+	<mvc:default-servlet-handler/>	<!-- 启动Servlet的配置处理 -->
+</beans>
