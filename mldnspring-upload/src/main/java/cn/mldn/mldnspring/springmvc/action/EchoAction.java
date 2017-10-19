@@ -1,7 +1,6 @@
 package cn.mldn.mldnspring.springmvc.action;
 
 import java.util.Arrays;
-import java.util.Locale;
 
 import javax.annotation.Resource;
 
@@ -17,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class EchoAction { // 定义了一个自己的处理程序类
 	private Logger log = LoggerFactory.getLogger(EchoAction.class);
 
+	
 	@Resource
 	private MessageSource messageSource;
 

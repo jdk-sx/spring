@@ -11,6 +11,16 @@
 		http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
+	<!-- 配置FileUpload组件在Spring中整合的处理类 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 定义上传文件的最大的字节大小，本次设置为5M -->
+		<property name="maxUploadSize" value="5242880"/>
+		<!-- 定义每一个上传文件允许的最大的字节数，允许为2M -->
+		<property name="maxUploadSizePerFile" value="2097152"/>
+		<!-- 描述的是内存之中允许占用的最大字节数 -->
+		<property name="maxInMemorySize" value="10485760"/>
+	</bean>
+	
 	<!-- 配置SpringMVC里面要使用的各项资源 -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">	<!-- 定义所有的BaseName名称 -->
