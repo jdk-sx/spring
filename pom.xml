@@ -264,5 +264,6 @@
 		<module>mldnspring-ws-api</module>
 		<module>mldnspring-mvc</module>
 		<module>mldnspring-springmvc</module>
+		<module>mldnspring-upload</module>
 	</modules>
 </project>
