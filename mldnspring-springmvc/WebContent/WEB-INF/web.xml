@@ -30,7 +30,8 @@
 	<servlet-mapping>	<!-- SpringMVC设计之中的路径都是以action结尾的 -->
 		<servlet-name>springmvc</servlet-name>
 		<url-pattern>*.action</url-pattern>
-	</servlet-mapping>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping> 
 	
 	<!-- 配置编码过滤器，以解决数据传输乱码问题 -->
 	<filter>
