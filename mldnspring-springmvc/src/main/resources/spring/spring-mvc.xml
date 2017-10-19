@@ -10,6 +10,12 @@
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<!-- 启动一个视图访问的解析处理器，该操作会自动在容器中加载，不需要做任何的依赖配置 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/pages/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
 	<context:annotation-config/>	<!-- 启用注解配置 -->
 	<context:component-scan base-package="cn.mldn.mldnspring"/>
 	<mvc:annotation-driven/>	<!-- 启用SpringMVC注解配置支持 -->
