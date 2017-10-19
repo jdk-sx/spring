@@ -11,14 +11,26 @@
 		http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
+	<!-- 配置错误的映射处理，出现了指定的异常之后可以让其跳转到错误页（/WEB-INF/pages/errors.jsp） -->
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">	<!-- 进行整体的错误映射 -->
+			<props>	<!-- 定义错误类型 -->
+				<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">
+					errors
+				</prop>
+			</props>
+		</property>
+	</bean>
+	
+	
 	<!-- 配置FileUpload组件在Spring中整合的处理类 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- 定义上传文件的最大的字节大小，本次设置为5M -->
-		<property name="maxUploadSize" value="5242880"/>
+		<property name="maxUploadSize" value="20971520"/>
 		<!-- 定义每一个上传文件允许的最大的字节数，允许为2M -->
-		<property name="maxUploadSizePerFile" value="2097152"/>
+		<property name="maxUploadSizePerFile" value="20971520"/>
 		<!-- 描述的是内存之中允许占用的最大字节数 -->
-		<property name="maxInMemorySize" value="10485760"/>
+		<property name="maxInMemorySize" value="41943040"/>
 	</bean>
 	
 	<!-- 配置SpringMVC里面要使用的各项资源 -->

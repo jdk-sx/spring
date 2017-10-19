@@ -23,6 +23,7 @@ public class UploadAction { // 定义了一个自己的处理程序类
 
 	@RequestMapping("upload")
 	public ModelAndView echo(String msg, MultipartFile photo) throws Exception { // photo你的表单参数名称
+		
 		this.log.info("*** EchoAction接收到请求参数，msg = " + msg);
 		if (photo == null || photo.isEmpty()) {
 			System.err.println("没有上传文件的信息。");
