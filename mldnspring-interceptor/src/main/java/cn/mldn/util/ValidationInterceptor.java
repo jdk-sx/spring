@@ -10,6 +10,8 @@ import org.springframework.context.MessageSource;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+import cn.mldn.util.validate.ActionValidationUtil;
+
 // 由于所有的抽象方法都使用了default关键字，那么此时不会再默认实现若干个抽象方法
 public class ValidationInterceptor implements HandlerInterceptor {
 	private Logger logger = LoggerFactory.getLogger(ValidationInterceptor.class);
@@ -27,7 +29,12 @@ public class ValidationInterceptor implements HandlerInterceptor {
 				validationRule = this.messageSource.getMessage(validationRuleKey, null, null) ;
 			} catch (Exception e) {}
 			if (validationRule != null) {	// 此时有验证处理操作，则需要进行验证处理
-				this.logger.info("【验证规则 - ｛"+request.getRequestURI()+"｝】" + validationRule); 
+				this.logger.info("【验证规则 - ｛"+request.getRequestURI()+"｝】" + validationRule);
+				ActionValidationUtil avu = new ActionValidationUtil(validationRule, request, this.messageSource) ;
+				if (avu.getErrors().size() > 0) {	// 现在有错误信息
+					System.err.println(avu.getErrors());
+					return false ;
+				} 
 			}
 		}
 		return true; // 返回true表示放行，而如果返回了false表示不执行后续的Action或拦截器
