@@ -10,9 +10,8 @@ public interface IGoodsService {
 	 * 进行商品信息的删除处理，调用IGoodsDAO.doEditDflag()方法
 	 * @param gids 要删除的商品编号
 	 * @return 如果没有商品商品或删除失败返回false 
-	 * @throws Exception SQL
 	 */
-	public boolean remove(Set<Long> gids) throws Exception ;
+	public boolean remove(Set<Long> gids) ;
 	/**
 	 * 进行商品修改前的数据查询操作，该操作要执行如下的数据层方法调用：
 	 * 1、调用IItemDAO.findAll()查询所有的商品分类信息。
@@ -24,9 +23,8 @@ public interface IGoodsService {
 	 * key = allTags、value = 所有的商品标签。
 	 * key = goods、value = 要修改的商品信息
 	 * key = allTids、value = 商品标签
-	 * @throws Exception SQL
 	 */
-	public Map<String,Object> preEdit(long id) throws Exception ;
+	public Map<String,Object> preEdit(long id) ;
 	/**
 	 * 实现商品数据的修改处理，商品必须有标记，该操作执行如下处理：
 	 * 1、实现商品数据的修改，调用IGoodsDAO.doEdit()
@@ -35,9 +33,8 @@ public interface IGoodsService {
 	 * @param vo 要追加的商品信息
 	 * @param tids 表示商品的标记信息
 	 * @return 修改成功返回true，否则返回false
-	 * @throws Exception SQL
 	 */
-	public boolean edit(Goods vo,Set<Long> tids) throws Exception ;
+	public boolean edit(Goods vo,Set<Long> tids);
 	/**
 	 * 进行商品信息的分页数据查询，如果没有查询列或查询关键字则进行整体查询
 	 * @param column 查询列
@@ -48,9 +45,8 @@ public interface IGoodsService {
 	 * 1、key = allGoods、value = 全部商品信息；
 	 * 2、key = allRecorders、value = 统计结果。
 	 * 3、key = allItems、value = 全部的分类信息（Map集合）
-	 * @throws Exception SQL
 	 */
-	public Map<String, Object> list(String column, String keyWord, long currentPage, int lineSize) throws Exception;
+	public Map<String, Object> list(String column, String keyWord, long currentPage, int lineSize) ;
 	
 	/**
 	 * 实现商品数据的追加处理，商品必须有标记，该操作执行如下处理：
@@ -60,9 +56,8 @@ public interface IGoodsService {
 	 * @param vo 要追加的商品信息
 	 * @param tids 表示商品的标记信息
 	 * @return 追加成功返回true，否则返回false
-	 * @throws Exception SQL 
 	 */
-	public boolean add(Goods vo,Set<Long> tids) throws Exception ;
+	public boolean add(Goods vo,Set<Long> tids) ;
 	/**
 	 * 进行商品添加前的数据查询操作，该操作要执行如下的数据层方法调用：
 	 * 1、调用IItemDAO.findAll()查询所有的商品分类信息。
@@ -70,8 +65,7 @@ public interface IGoodsService {
 	 * @return 返回的数据包含有如下内容：
 	 * key = allItems、value = 所有的商品分类。
 	 * key = allTags、value = 所有的商品标签。
-	 * @throws Exception SQL
 	 */
-	public Map<String,Object> preAdd() throws Exception ;
+	public Map<String,Object> preAdd() ;
 }
 

@@ -1,9 +1,4 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" %>
-<%@ page import="cn.mldn.vo.*" %>
-<%@ page import="cn.mldn.util.*" %>
-<%@ page import="cn.mldn.util.factory.*" %>
-<%@ page import="cn.mldn.service.back.*"%>
 <%	request.setCharacterEncoding("UTF-8") ;
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ request.getContextPath() + "/";

@@ -1,8 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*"%>
-<%@ page import="cn.mldn.vo.*"%>
-<%@ page import="cn.mldn.util.factory.*"%>
-<%@ page import="cn.mldn.service.back.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <%
@@ -10,7 +7,7 @@
 		request.getServerName() + ":" + request.getServerPort() + 
 		request.getContextPath() + "/" ;
 	String goods_list_url = basePath + "pages/back/admin/goods/goods_list.jsp" ;
-	String goods_add_url = basePath + "pages/back/admin/goods/goods_add_do.jsp" ;
+	String goods_add_url = basePath + "pages/back/admin/goods/goods_add.action" ;
 %>
 <base href="<%=basePath%>"/>
 <title>商品管理</title>
@@ -23,14 +20,6 @@
 	href="bootstrap/css/bootstrap.min.css">
 </head>
 <body>
-<%
-	IGoodsServiceBack goodsServiceBack = Factory.getServiceInstance("goods.service.back") ;
-	Map<String,Object> map = goodsServiceBack.preAdd() ; // 获取商品添加前所需要的信息
-	List<Item> allItems = (List<Item>) map.get("allItems") ;
-	Iterator<Item> iterItem = allItems.iterator() ;
-	List<Tag> allTags = (List<Tag>) map.get("allTags") ;
-	Iterator<Tag> iterTag = allTags.iterator() ;
-%>
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
@@ -58,14 +47,9 @@
 							<div class="col-md-5">
 								<select id="item" name="item" class="form-control"> 
 									<option value="">========= 请选择商品所属分类 =========</option>
-								<%
-									while (iterItem.hasNext()) {
-										Item item = iterItem.next() ;
-								%>
-									<option value="<%=item.getIid()%>"><%=item.getTitle()%></option>
-								<%
-									}
-								%>	
+									<c:forEach items="${allItems}" var="item">
+										<option value="${item.iid}">${item.title}</option>
+									</c:forEach>
 								</select>
 							</div>
 							<span class="col-md-5" id="itemSpan">*</span>
@@ -73,18 +57,13 @@
 						<div class="form-group" id="tagDiv">
 							<label class="col-md-2 control-label" for="tag">商品标签：</label>
 							<div class="col-md-5">
-							<%
-								while (iterTag.hasNext()) {
-									Tag tag = iterTag.next() ;
-							%>
-								<div class="col-md-3">
-									<div class="checkbox">
-										<label><input type="checkbox" id="tag" name="tag" value="<%=tag.getTid()%>"><%=tag.getTitle()%></label>
+								<c:forEach items="${allTags}" var="tag">
+									<div class="col-md-3">
+										<div class="checkbox">
+											<label><input type="checkbox" id="tag" name="tag" value="${tag.tid}">${tag.title}</label>
+										</div>
 									</div>
-								</div>
-							<%
-								}
-							%>	
+								</c:forEach>
 							</div>
 							<span class="col-md-5" id="tagSpan">*</span>
 						</div>
