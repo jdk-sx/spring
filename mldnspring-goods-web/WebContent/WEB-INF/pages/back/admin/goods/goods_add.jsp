@@ -42,17 +42,17 @@
 							</div>
 							<span class="col-md-5" id="priceSpan">*</span>
 						</div>
-						<div class="form-group" id="itemDiv">
-							<label class="col-md-2 control-label" for="item">商品分类：</label>
+						<div class="form-group" id="iidDiv">
+							<label class="col-md-2 control-label" for="iid">商品分类：</label>
 							<div class="col-md-5">
-								<select id="item" name="item" class="form-control"> 
+								<select id="iid" name="iid" class="form-control"> 
 									<option value="">========= 请选择商品所属分类 =========</option>
 									<c:forEach items="${allItems}" var="item">
 										<option value="${item.iid}">${item.title}</option>
 									</c:forEach>
 								</select>
 							</div>
-							<span class="col-md-5" id="itemSpan">*</span>
+							<span class="col-md-5" id="iidSpan">*</span>
 						</div>
 						<div class="form-group" id="tagDiv">
 							<label class="col-md-2 control-label" for="tag">商品标签：</label>
@@ -60,19 +60,19 @@
 								<c:forEach items="${allTags}" var="tag">
 									<div class="col-md-3">
 										<div class="checkbox">
-											<label><input type="checkbox" id="tag" name="tag" value="${tag.tid}">${tag.title}</label>
+											<label><input type="checkbox" id="tid" name="tid" value="${tag.tid}">${tag.title}</label>
 										</div>
 									</div>
 								</c:forEach>
 							</div>
-							<span class="col-md-5" id="tagSpan">*</span>
+							<span class="col-md-5" id="tidSpan">*</span>
 						</div>
-						<div class="form-group" id="photoDiv">
-							<label class="col-md-2 control-label" for="photo">商品图片：</label>
+						<div class="form-group" id="picDiv">
+							<label class="col-md-2 control-label" for="pic">商品图片：</label>
 							<div class="col-md-5">
-								<input type="file" id="photo" name="photo" class="form-control" placeholder="请选择商品宣传图">
+								<input type="file" id="pic" name="pic" class="form-control" placeholder="请选择商品宣传图">
 							</div>
-							<span class="col-md-5" id="photoSpan">*</span>
+							<span class="col-md-5" id="picSpan">*</span>
 						</div>
 						<div class="form-group">
 							<div class="col-md-3 col-md-offset-3">

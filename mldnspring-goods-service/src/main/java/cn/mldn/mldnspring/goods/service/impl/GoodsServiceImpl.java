@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import cn.mldn.mldnspring.goods.api.service.IGoodsService;
 import cn.mldn.mldnspring.goods.api.vo.Goods;
+import cn.mldn.mldnspring.goods.dao.IGoodsDAO;
 import cn.mldn.mldnspring.goods.dao.IItemDAO;
 import cn.mldn.mldnspring.goods.dao.ITagDAO;
 import cn.mldn.util.service.abs.AbstractService;
@@ -20,6 +21,8 @@ public class GoodsServiceImpl extends AbstractService implements IGoodsService {
 	private IItemDAO itemDAO;
 	@Resource
 	private ITagDAO tagDAO;
+	@Resource
+	private IGoodsDAO goodsDAO ;
 	@Override
 	public Map<String, Object> preAdd() {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -27,6 +30,19 @@ public class GoodsServiceImpl extends AbstractService implements IGoodsService {
 		map.put("allTags", this.tagDAO.findAll()) ;
 		return map; 
 	}
+	
+
+	@Override
+	public boolean add(Goods vo, Set<Long> tids) {
+		if (tids == null || tids.size() == 0) {
+			return false ;
+		}
+		vo.setDflag(0); // 现在未删除
+		if (this.goodsDAO.doCreate(vo)) {	// 保存数据同时取回增长后的id
+			return this.goodsDAO.doCreateGoodsAndTag(vo.getGid(), tids) ;
+		}
+		return false;
+	} 
 
 	@Override
 	public boolean remove(Set<Long> gids)  {
@@ -52,10 +68,5 @@ public class GoodsServiceImpl extends AbstractService implements IGoodsService {
 		return null;
 	}
 
-	@Override
-	public boolean add(Goods vo, Set<Long> tids) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 }

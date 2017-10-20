@@ -1,8 +1,8 @@
 window.onload = function() {
 	listener("name","blur",validateName) ;
 	listener("price","blur",validatePrice) ;
-	listener("item","blur",validateItem) ;
-	listener("photo","blur",validatePhoto) ;
+	listener("iid","blur",validateItem) ;
+	listener("pic","blur",validatePhoto) ;
 	listener("goodsForm","submit",function(e){
 		if (validateName() & validatePrice() & validateItem() & validatePhoto() & validateTag()) {
 			this.submit() ;
@@ -18,11 +18,11 @@ function validatePrice() {
 	return validateRegex("price",/\d+(\.\d{1,2})?/) ;
 }
 function validateItem() { 
-	return validateEmpty("item") ;
+	return validateEmpty("iid") ;
 }
 function validatePhoto() {
-	return validateEmpty("photo") ;
+	return validateEmpty("pic") ;
 }
 function validateTag() {
-	return validateCheckbox("tag") ;
+	return validateCheckbox("tid") ;
 }

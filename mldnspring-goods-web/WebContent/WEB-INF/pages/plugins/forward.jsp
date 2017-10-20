@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <%	request.setCharacterEncoding("UTF-8") ;
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ request.getContextPath() + "/";
+			+ request.getContextPath();
 %>
 <%
 	String msg = (String) request.getAttribute("msg") ;	// 提示信息
