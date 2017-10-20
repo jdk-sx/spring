@@ -2,11 +2,8 @@ package cn.mldn.mldnspring.springmvc.action;
 
 import java.util.Arrays;
 
-import javax.annotation.Resource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,18 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class EchoAction { // 定义了一个自己的处理程序类
 	private Logger log = LoggerFactory.getLogger(EchoAction.class);
 
-	
-	@Resource
-	private MessageSource messageSource;
-
 	@RequestMapping("echo_pre")
 	public String echoPre() {
-		System.err.println(
-				"【echo.input.page】" + this.messageSource.getMessage("echo.input.page", null, null));
-		System.err.println("【welcome.info】"
-				+ this.messageSource.getMessage("welcome.info", new Object[] { "约翰先生" }, null));
-//		System.err.println(
-//				"【nothing】" + this.messageSource.getMessage("nothing", null, null));
+		System.err.println("A、************* ｛EchoAction｝echoPre()");
 		return "message/message_input";
 	} 
 
@@ -38,6 +26,7 @@ public class EchoAction { // 定义了一个自己的处理程序类
 		ModelAndView mav = new ModelAndView("message/message_show");
 		mav.addObject("echoMessage", "【ECHO】msg = " + msg); // 设置request属性范围
 		mav.addObject("echoTags", Arrays.toString(tags)); // 设置request属性范围
+		System.err.println("B、************* ｛EchoAction｝echo()");
 		return mav;
 	}
 }
