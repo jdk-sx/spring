@@ -8,6 +8,13 @@ import cn.mldn.util.dao.IBaseDAO;
 
 public interface IGoodsDAO extends IBaseDAO<Long, Goods> {
 	/**
+	 * 根据商品编号删除掉所有的商品标签 
+	 * @param gid
+	 * @return
+	 */
+	public boolean doRemoveGoodsTag(Long gid) ; 
+	
+	/**
 	 * 根据商品编号查询出此商品的所有标签信息
 	 * @param gid
 	 * @return

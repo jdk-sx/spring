@@ -76,7 +76,14 @@ public class GoodsServiceImpl extends AbstractService implements IGoodsService {
 
 	@Override
 	public boolean edit(Goods vo, Set<Long> tids) {
-		// TODO Auto-generated method stub
+		if (tids == null || tids.size() == 0) {
+			return false;
+		}
+		if (this.goodsDAO.doEdit(vo)) { // 数据更新
+			if (this.goodsDAO.doRemoveGoodsTag(vo.getGid())) {
+				return this.goodsDAO.doCreateGoodsAndTag(vo.getGid(), tids);
+			}
+		}
 		return false;
 	}
 

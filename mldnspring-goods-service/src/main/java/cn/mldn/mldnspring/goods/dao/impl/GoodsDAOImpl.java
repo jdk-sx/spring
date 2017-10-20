@@ -21,11 +21,17 @@ import cn.mldn.util.dao.abs.AbstractDAO;
 @Repository
 public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO, RowMapper<Goods> {
 	@Override
-	public List<Long> findGoodsTag(Long gid) {
-		String sql = "SELECT tid FROM goods_tag WHERE gid=?" ;
-		return super.jdbcTemplate.queryForList(sql, new Object[] {gid} ,Long.class); 
+	public boolean doRemoveGoodsTag(Long gid) {
+		String sql = "DELETE FROM goods_tag WHERE gid=?";
+		return super.jdbcTemplate.update(sql, gid) > 0;
 	}
-	
+
+	@Override
+	public List<Long> findGoodsTag(Long gid) {
+		String sql = "SELECT tid FROM goods_tag WHERE gid=?";
+		return super.jdbcTemplate.queryForList(sql, new Object[] { gid }, Long.class);
+	}
+
 	@Override
 	public boolean doCreateGoodsAndTag(Long gid, Set<Long> tids) {
 		String sql = "INSERT INTO goods_tag(gid,tid) VALUES (?,?)";
@@ -69,8 +75,8 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO, RowMapper<Go
 
 	@Override
 	public boolean doEdit(Goods vo) {
-		// TODO Auto-generated method stub
-		return false;
+		String sql = "UPDATE goods SET name=?,price=?,photo=?,iid=? WHERE gid=?";
+		return super.jdbcTemplate.update(sql, vo.getName(), vo.getPrice(), vo.getPhoto(), vo.getIid(), vo.getGid()) > 0;
 	}
 
 	@Override
@@ -87,8 +93,8 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO, RowMapper<Go
 
 	@Override
 	public Goods findById(Long id) {
-		String sql = "SELECT gid,name,price,photo,dflag,iid FROM goods WHERE dflag=0 AND gid=?" ;
-		return super.jdbcTemplate.queryForObject(sql, new Object[] {id}, this);
+		String sql = "SELECT gid,name,price,photo,dflag,iid FROM goods WHERE dflag=0 AND gid=?";
+		return super.jdbcTemplate.queryForObject(sql, new Object[] { id }, this);
 	}
 
 	@Override

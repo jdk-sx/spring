@@ -1,6 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fnt"  uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
 <head>
 <%
@@ -41,7 +42,7 @@
 					<td><input type="checkbox" id="gid" value="${goods.gid}"/></td>
 					<td>${goods.name}</td>
 					<td><fmt:formatNumber value="${goods.price}"/></td> 
-					<td>${allItems[goods.iid].title}</td>
+					<td>${allItems[goods.iid]}</td>
 					<td><a href="<%=goods_edit_url%>?gid=${goods.gid}" class="btn btn-warning btn-xs">
 						<span class="glyphicon glyphicon-pencil"></span>&nbsp;编辑</a></td>
 				</tr> 
