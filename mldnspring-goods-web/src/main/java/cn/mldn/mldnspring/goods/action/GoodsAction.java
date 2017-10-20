@@ -20,6 +20,13 @@ public class GoodsAction extends AbstractAction {
 	private static final String TITLE = "商品" ; 
 	@Resource
 	private IGoodsService goodsService ;
+	@RequestMapping("goods_edit_pre")
+	public ModelAndView editPre(long gid) {
+		ModelAndView mav = new ModelAndView(super.getPage("goods.edit.page")) ;
+		mav.addAllObjects(this.goodsService.preEdit(gid)) ;
+		return mav ;
+	}
+	
 	@RequestMapping("goods_list") 
 	public ModelAndView list() {
 		ModelAndView mav = new ModelAndView(super.getPage("goods.list.page")) ;

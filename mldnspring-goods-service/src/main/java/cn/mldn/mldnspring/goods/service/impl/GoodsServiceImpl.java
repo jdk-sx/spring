@@ -66,8 +66,12 @@ public class GoodsServiceImpl extends AbstractService implements IGoodsService {
 
 	@Override
 	public Map<String, Object> preEdit(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("allItems", this.itemDAO.findAll());
+		map.put("allTags", this.tagDAO.findAll());
+		map.put("goods", this.goodsDAO.findById(id)) ;
+		map.put("goodsTags", this.goodsDAO.findGoodsTag(id)) ;
+		return map;
 	}
 
 	@Override

@@ -21,6 +21,12 @@ import cn.mldn.util.dao.abs.AbstractDAO;
 @Repository
 public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO, RowMapper<Goods> {
 	@Override
+	public List<Long> findGoodsTag(Long gid) {
+		String sql = "SELECT tid FROM goods_tag WHERE gid=?" ;
+		return super.jdbcTemplate.queryForList(sql, new Object[] {gid} ,Long.class); 
+	}
+	
+	@Override
 	public boolean doCreateGoodsAndTag(Long gid, Set<Long> tids) {
 		String sql = "INSERT INTO goods_tag(gid,tid) VALUES (?,?)";
 		int[][] len = this.jdbcTemplate.batchUpdate(sql, tids, tids.size(),
@@ -81,8 +87,8 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO, RowMapper<Go
 
 	@Override
 	public Goods findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT gid,name,price,photo,dflag,iid FROM goods WHERE dflag=0 AND gid=?" ;
+		return super.jdbcTemplate.queryForObject(sql, new Object[] {id}, this);
 	}
 
 	@Override

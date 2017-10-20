@@ -1,8 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*"%>
-<%@ page import="cn.mldn.vo.*"%>
-<%@ page import="cn.mldn.util.factory.*"%>
-<%@ page import="cn.mldn.service.back.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
 <head>
 <%
@@ -10,7 +8,7 @@
 	String basePath = request.getScheme() + "://" + 
 		request.getServerName() + ":" + request.getServerPort() + 
 		request.getContextPath() + "/" ;
-	String goods_edit_url = basePath + "pages/back/admin/goods/goods_edit_do.jsp" ;
+	String goods_edit_url = basePath + "pages/back/admin/goods/goods_edit.action" ;
 %>
 <base href="<%=basePath%>"/>
 <title>商品管理</title>
@@ -22,16 +20,6 @@
 <link rel="stylesheet" type="text/css"
 	href="bootstrap/css/bootstrap.min.css">
 </head>
-<%
-	IGoodsServiceBack goodsServiceBack = Factory.getServiceInstance("goods.service.back") ;
-	Map<String,Object> map = goodsServiceBack.preEdit(Long.parseLong(request.getParameter("gid"))) ;
-	List<Item> allItems = (List<Item>) map.get("allItems") ;
-	Iterator<Item> iterItem = allItems.iterator() ;
-	List<Tag> allTags = (List<Tag>) map.get("allTags") ;
-	Iterator<Tag> iterTag = allTags.iterator() ;
-	Goods goods = (Goods) map.get("goods") ;
-	Set<Long> tids = (Set<Long>) map.get("tids") ;
-%>
 <body>
 	<div class="container">
 		<div class="row">
@@ -44,63 +32,54 @@
 						<div class="form-group" id="nameDiv">
 							<label class="col-md-2 control-label" for="name">商品名称：</label>
 							<div class="col-md-5">
-								<input type="text" id="name" name="name" class="form-control" value="<%=goods.getName()%>" placeholder="请填写商品名称">
+								<input type="text" id="name" name="name" class="form-control" value="${goods.name}" placeholder="请填写商品名称">
 							</div>
 							<span class="col-md-5" id="nameSpan">*</span>
 						</div>
 						<div class="form-group" id="priceDiv">
 							<label class="col-md-2 control-label" for="price">商品价格：</label>
 							<div class="col-md-5">
-								<input type="text" id="price" name="price" class="form-control" value="<%=goods.getPrice()%>" placeholder="请填写商品单价">
+								<input type="text" id="price" name="price" class="form-control" value="${goods.price}" placeholder="请填写商品单价">
 							</div>
 							<span class="col-md-5" id="priceSpan">*</span>
 						</div>
-						<div class="form-group" id="itemDiv">
-							<label class="col-md-2 control-label" for="item">商品分类：</label>
+						<div class="form-group" id="iidDiv">
+							<label class="col-md-2 control-label" for="iid">商品分类：</label>
 							<div class="col-md-5">
-								<select id="item" name="item" class="form-control"> 
-								<%
-									while (iterItem.hasNext()) {
-										Item item = iterItem.next() ;
-								%>
-									<option value="<%=item.getIid()%>" <%= item.getIid().equals(goods.getIid()) ? "selected" : ""%>><%=item.getTitle()%></option>
-								<%
-									}
-								%>	
+								<select id="iid" name="iid" class="form-control"> 
+									<option value="">========= 请选择商品所属分类 =========</option>
+									<c:forEach items="${allItems}" var="item">
+										<option value="${item.iid}" ${item.iid==goods.iid?"selected":""}>${item.title}</option>
+									</c:forEach>
 								</select>
 							</div>
-							<span class="col-md-5" id="itemSpan">*</span>
+							<span class="col-md-5" id="iidSpan">*</span>
 						</div>
 						<div class="form-group" id="tagDiv">
 							<label class="col-md-2 control-label" for="tag">商品标签：</label>
 							<div class="col-md-5">
-							<%
-								while (iterTag.hasNext()) {
-									Tag tag = iterTag.next() ;
-							%>
-								<div class="col-md-3">
-									<div class="checkbox">
-										<label><input type="checkbox" id="tag" name="tag" value="<%=tag.getTid()%>" <%=tids.contains(tag.getTid()) ? "checked" : ""%>><%=tag.getTitle()%></label>
+								<c:forEach items="${allTags}" var="tag">
+									<div class="col-md-3">
+										<div class="checkbox">
+											<label><input type="checkbox" id="tid" name="tid" value="${tag.tid}" ${fn:contains(goodsTags,tag.tid) ? "checked" : ""}>${tag.title}</label>
+										</div>
 									</div>
-								</div>
-							<%
-								}
-							%>	
+								</c:forEach>
 							</div>
-							<span class="col-md-5" id="tagSpan">*</span>
+							<span class="col-md-5" id="tidSpan">*</span>
 						</div>
-						<div class="form-group" id="photoDiv">
-							<label class="col-md-2 control-label" for="photo">商品图片：</label>
+						<div class="form-group" id="picDiv">
+							<label class="col-md-2 control-label" for="pic">商品图片：</label>
 							<div class="col-md-5">
-								<img src="upload/goods/<%=goods.getPhoto()%>"><br>
-								<input type="file" id="photo" name="photo" class="form-control" placeholder="请选择商品宣传图">
+								<img src="upload/goods/${goods.photo}"><br>
+								<input type="file" id="pic" name="pic" class="form-control" placeholder="请选择商品宣传图">
 							</div>
-							<span class="col-md-5" id="photoSpan">如果不修改可以不选择</span>
+							<span class="col-md-5" id="picSpan">如果不修改可以不选择</span>
 						</div>
 						<div class="form-group">
 							<div class="col-md-3 col-md-offset-3">
-								<input type="hidden" id="gid" name="gid" value="<%=goods.getGid()%>">
-								<input type="hidden" id="oldPhoto" name="oldPhoto" value="<%=goods.getPhoto()%>">
+								<input type="hidden" id="gid" name="gid" value="${goods.gid}">
+								<input type="hidden" id="photo" name="photo" value="${goods.photo}">
 								<input type="submit" value="提交" class="btn btn-primary">
 								<input type="reset" value="重置" class="btn btn-warning">
 							</div>
