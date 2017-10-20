@@ -281,5 +281,6 @@
 		<module>mldnspring-mvc</module>
 		<module>mldnspring-springmvc</module>
 		<module>mldnspring-upload</module>
+		<module>mldnspring-interceptor</module>
 	</modules>
 </project>
