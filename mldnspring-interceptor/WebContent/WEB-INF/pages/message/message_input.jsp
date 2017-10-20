@@ -12,6 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="mvccss/style.css">
 </head> 
 <body>
+${errors}
 <form action="<%=message_input_url%>" method="post">
 	<span class="txt">请输入消息：</span>
 	<input type="text" name="msg" id="msg" value="www.mldn.cn"><br>
@@ -20,7 +21,6 @@
 		<input type="checkbox" name="tags" id="tags" value="经济">经济
 		<input type="checkbox" name="tags" id="tags" value="文化">文化
 	<br><input type="submit" value="发送">
-	<img src="mvcimages/diaosi.jpg">
 </form>
 </body>
 </html>

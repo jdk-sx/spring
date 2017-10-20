@@ -32,8 +32,17 @@ public class ValidationInterceptor implements HandlerInterceptor {
 				this.logger.info("【验证规则 - ｛"+request.getRequestURI()+"｝】" + validationRule);
 				ActionValidationUtil avu = new ActionValidationUtil(validationRule, request, this.messageSource) ;
 				if (avu.getErrors().size() > 0) {	// 现在有错误信息
-					System.err.println(avu.getErrors());
-					return false ;
+					request.setAttribute("errors", avu.getErrors());	// 跳转到指定路径
+					String errorPage = null ; 
+					try {
+						errorPage = this.messageSource.getMessage(validationRuleKey + ".error.page", null, null) ;
+					} catch (Exception e) {	// 如果没有指定的路径则跳转到公共的errorPage
+						errorPage = this.messageSource.getMessage("error.page", null, null) ;
+					}
+					request.getRequestDispatcher(errorPage).forward(request, response);
+					return false ; 
+				} else {
+					return true ;	// 表示向后执行Action操作
 				} 
 			}
 		}
