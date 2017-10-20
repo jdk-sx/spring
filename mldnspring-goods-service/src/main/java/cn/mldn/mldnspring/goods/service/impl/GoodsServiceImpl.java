@@ -22,36 +22,50 @@ public class GoodsServiceImpl extends AbstractService implements IGoodsService {
 	@Resource
 	private ITagDAO tagDAO;
 	@Resource
-	private IGoodsDAO goodsDAO ;
+	private IGoodsDAO goodsDAO;
+
 	@Override
 	public Map<String, Object> preAdd() {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("allItems", this.itemDAO.findAll()) ;
-		map.put("allTags", this.tagDAO.findAll()) ;
-		return map; 
+		map.put("allItems", this.itemDAO.findAll());
+		map.put("allTags", this.tagDAO.findAll());
+		return map;
 	}
-	
 
 	@Override
 	public boolean add(Goods vo, Set<Long> tids) {
 		if (tids == null || tids.size() == 0) {
-			return false ;
+			return false;
 		}
 		vo.setDflag(0); // 现在未删除
-		if (this.goodsDAO.doCreate(vo)) {	// 保存数据同时取回增长后的id
-			return this.goodsDAO.doCreateGoodsAndTag(vo.getGid(), tids) ;
+		if (this.goodsDAO.doCreate(vo)) { // 保存数据同时取回增长后的id
+			return this.goodsDAO.doCreateGoodsAndTag(vo.getGid(), tids);
 		}
 		return false;
-	} 
+	}
 
 	@Override
-	public boolean remove(Set<Long> gids)  {
+	public Map<String, Object> list(String column, String keyWord, long currentPage, int lineSize) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("allItems", this.itemDAO.findAll()) ;
+		if (super.isEmpty(column) || super.isEmpty(keyWord)) { // 查询全部操作
+			map.put("allRecorders", this.goodsDAO.getAllCount());
+			map.put("allGoods", this.goodsDAO.findAll(currentPage, lineSize));
+		} else {
+			map.put("allRecorders", this.goodsDAO.getSplitCount(column, keyWord));
+			map.put("allGoods", this.goodsDAO.findSplit(column, keyWord, currentPage, lineSize));
+		}
+		return map;
+	}
+
+	@Override
+	public boolean remove(Set<Long> gids) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public Map<String, Object> preEdit(long id){
+	public Map<String, Object> preEdit(long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -61,12 +75,5 @@ public class GoodsServiceImpl extends AbstractService implements IGoodsService {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-	@Override
-	public Map<String, Object> list(String column, String keyWord, long currentPage, int lineSize) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 }

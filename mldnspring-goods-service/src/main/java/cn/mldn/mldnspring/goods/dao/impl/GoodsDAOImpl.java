@@ -2,12 +2,14 @@ package cn.mldn.mldnspring.goods.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -17,7 +19,7 @@ import cn.mldn.mldnspring.goods.dao.IGoodsDAO;
 import cn.mldn.util.dao.abs.AbstractDAO;
 
 @Repository
-public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
+public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO, RowMapper<Goods> {
 	@Override
 	public boolean doCreateGoodsAndTag(Long gid, Set<Long> tids) {
 		String sql = "INSERT INTO goods_tag(gid,tid) VALUES (?,?)";
@@ -90,27 +92,41 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 	}
 
 	@Override
+	public Goods mapRow(ResultSet rs, int rowNum) throws SQLException {
+		Goods vo = new Goods();
+		vo.setGid(rs.getLong(1));
+		vo.setName(rs.getString(2));
+		vo.setPrice(rs.getDouble(3));
+		vo.setPhoto(rs.getString(4));
+		vo.setDflag(rs.getInt(5));
+		vo.setIid(rs.getLong(6));
+		return vo;
+	}
+
+	@Override
 	public List<Goods> findAll(Long currentPage, Integer lineSize) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT gid,name,price,photo,dflag,iid FROM goods WHERE dflag=0 LIMIT ?,?";
+		return super.jdbcTemplate.query(sql, new Object[] { (currentPage - 1) * lineSize, lineSize }, this);
 	}
 
 	@Override
 	public List<Goods> findSplit(String column, String keyWord, Long currentPage, Integer lineSize) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT gid,name,price,photo,dflag,iid FROM goods WHERE dflag=0 AND " + column
+				+ " LIKE ? LIMIT ?,?";
+		return super.jdbcTemplate.query(sql,
+				new Object[] { "%" + keyWord + "%", (currentPage - 1) * lineSize, lineSize }, this);
 	}
 
 	@Override
 	public Long getAllCount() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT COUNT(*) FROM goods";
+		return super.jdbcTemplate.queryForObject(sql, Long.class);
 	}
 
 	@Override
 	public Long getSplitCount(String column, String keyWord) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT COUNT(*) FROM goods WHERE " + column + " LIKE ? ";
+		return super.jdbcTemplate.queryForObject(sql, new Object[] { "%" + keyWord + "%" }, Long.class);
 	}
 
 }

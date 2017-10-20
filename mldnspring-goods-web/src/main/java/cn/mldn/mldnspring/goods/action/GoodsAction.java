@@ -13,12 +13,21 @@ import org.springframework.web.servlet.ModelAndView;
 import cn.mldn.mldnspring.goods.api.service.IGoodsService;
 import cn.mldn.mldnspring.goods.api.vo.Goods;
 import cn.mldn.util.action.abs.AbstractAction;
+import cn.mldn.util.web.SplitPageUtil;
 @Controller
 @RequestMapping("/pages/back/admin/goods/*")
 public class GoodsAction extends AbstractAction {
-	private static final String TITLE = "商品" ;
+	private static final String TITLE = "商品" ; 
 	@Resource
 	private IGoodsService goodsService ;
+	@RequestMapping("goods_list") 
+	public ModelAndView list() {
+		ModelAndView mav = new ModelAndView(super.getPage("goods.list.page")) ;
+		SplitPageUtil spu = new SplitPageUtil("商品名称:name", super.getPage("goods.list.action")) ;
+		mav.addAllObjects(this.goodsService.list(spu.getColumn(), spu.getKeyWord(), spu.getCurrentPage(), spu.getLineSize())) ;
+		return mav ;
+	}
+	
 	@RequestMapping("goods_add")
 	public ModelAndView add(Goods goods,String tid[],MultipartFile pic) throws Exception {
 		ModelAndView mav = new ModelAndView(super.getPage("forward.page")) ;

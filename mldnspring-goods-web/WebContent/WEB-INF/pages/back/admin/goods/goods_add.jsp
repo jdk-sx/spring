@@ -6,7 +6,7 @@
 	String basePath = request.getScheme() + "://" + 
 		request.getServerName() + ":" + request.getServerPort() + 
 		request.getContextPath() + "/" ;
-	String goods_list_url = basePath + "pages/back/admin/goods/goods_list.jsp" ;
+	String goods_list_url = basePath + "pages/back/admin/goods/goods_list.action" ;
 	String goods_add_url = basePath + "pages/back/admin/goods/goods_add.action" ;
 %>
 <base href="<%=basePath%>"/>

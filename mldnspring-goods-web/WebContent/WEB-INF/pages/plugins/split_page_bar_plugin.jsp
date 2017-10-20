@@ -12,9 +12,12 @@
 
 <%
 	request.setCharacterEncoding("UTF-8") ;
+String basePath = request.getScheme() + "://" + 
+		request.getServerName() + ":" + request.getServerPort() + 
+		request.getContextPath();
 %>
 <%
-	String handleUrl = (String) request.getAttribute("handleUrl") ;
+	String handleUrl = basePath + (String) request.getAttribute("handleUrl") ;
 	String column = (String) request.getAttribute("column") ;
 	String keyWord = (String) request.getAttribute("keyWord") ;
 	long allRecorders = 0 ;

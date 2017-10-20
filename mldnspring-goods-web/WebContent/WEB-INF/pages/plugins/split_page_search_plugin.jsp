@@ -1,6 +1,9 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8") ;
+String basePath = request.getScheme() + "://" + 
+		request.getServerName() + ":" + request.getServerPort() + 
+		request.getContextPath();
 %>
 <%--	// 考虑到以后的结合开发，本处使用request属性范围传递
 	request.setAttribute("columnData",columnData) ;	// 属性名称
@@ -10,7 +13,7 @@
 --%>
 <%	// columnData格式：标签名称:字段名称|标签名称:字段名称|
 	String columnData = (String) request.getAttribute("columnData") ;
-	String handleUrl = (String) request.getAttribute("handleUrl") ;
+	String handleUrl = basePath + (String) request.getAttribute("handleUrl") ;
 	String keyWord = (String) request.getAttribute("keyWord") ;
 	String column = (String) request.getAttribute("column") ;
 %>
