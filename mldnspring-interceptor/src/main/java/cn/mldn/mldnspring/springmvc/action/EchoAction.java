@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller // 所有需要被Spring管理的程序类一定要进行配置
@@ -20,8 +21,8 @@ public class EchoAction { // 定义了一个自己的处理程序类
 	} 
 
 	@RequestMapping("echo") // 以后访问此方法的路径就是“echo.action”；
-	public ModelAndView echo(String msg, String tags[]) { // 该参数会根据参数名称自动进行匹配处理
-		this.log.info("*** EchoAction接收到请求参数，msg = " + msg + "、标签：" + Arrays.toString(tags));
+	public ModelAndView echo(String msg, String tags[],MultipartFile photo) { // 该参数会根据参数名称自动进行匹配处理
+		this.log.info("*** EchoAction接收到请求参数，msg = " + msg + "、标签：" + Arrays.toString(tags) + "、上传文件：" + photo);
 		// ModelAndView主要功能是设置跳转路径以及进行request属性的保存
 		ModelAndView mav = new ModelAndView("message/message_show");
 		mav.addObject("echoMessage", "【ECHO】msg = " + msg); // 设置request属性范围

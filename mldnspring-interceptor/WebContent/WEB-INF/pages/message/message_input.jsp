@@ -13,13 +13,14 @@
 </head> 
 <body>
 ${errors}
-<form action="<%=message_input_url%>" method="post">
+<form action="<%=message_input_url%>" method="post" enctype="multipart/form-data">
 	<span class="txt">请输入消息：</span>
 	<input type="text" name="msg" id="msg" value="www.mldn.cn"><br>
 	<span class="txt">消息标签：</span>
 		<input type="checkbox" name="tags" id="tags" value="政治">政治
 		<input type="checkbox" name="tags" id="tags" value="经济">经济
-		<input type="checkbox" name="tags" id="tags" value="文化">文化
+		<input type="checkbox" name="tags" id="tags" value="文化">文化<br>
+	照片:<input type="file" name="photo" id="photo">
 	<br><input type="submit" value="发送">
 </form>
 </body>

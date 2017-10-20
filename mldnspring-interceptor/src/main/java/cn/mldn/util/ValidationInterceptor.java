@@ -8,8 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+import cn.mldn.util.validate.ActionMIMEValidationUtil;
 import cn.mldn.util.validate.ActionValidationUtil;
 
 // 由于所有的抽象方法都使用了default关键字，那么此时不会再默认实现若干个抽象方法
@@ -29,19 +31,33 @@ public class ValidationInterceptor implements HandlerInterceptor {
 				validationRule = this.messageSource.getMessage(validationRuleKey, null, null) ;
 			} catch (Exception e) {}
 			if (validationRule != null) {	// 此时有验证处理操作，则需要进行验证处理
-				this.logger.info("【验证规则 - ｛"+request.getRequestURI()+"｝】" + validationRule);
+				// this.logger.info("【验证规则 - ｛"+request.getRequestURI()+"｝】" + validationRule);
+				String errorPage = null ; 
+				try {
+					errorPage = this.messageSource.getMessage(validationRuleKey + ".error.page", null, null) ;
+				} catch (Exception e) {	// 如果没有指定的路径则跳转到公共的errorPage
+					errorPage = this.messageSource.getMessage("error.page", null, null) ;
+				}
 				ActionValidationUtil avu = new ActionValidationUtil(validationRule, request, this.messageSource) ;
 				if (avu.getErrors().size() > 0) {	// 现在有错误信息
 					request.setAttribute("errors", avu.getErrors());	// 跳转到指定路径
-					String errorPage = null ; 
-					try {
-						errorPage = this.messageSource.getMessage(validationRuleKey + ".error.page", null, null) ;
-					} catch (Exception e) {	// 如果没有指定的路径则跳转到公共的errorPage
-						errorPage = this.messageSource.getMessage("error.page", null, null) ;
-					}
 					request.getRequestDispatcher(errorPage).forward(request, response);
 					return false ; 
-				} else {
+				} else {	// 如果没有错误信息验证上传文件类型
+					if (request instanceof DefaultMultipartHttpServletRequest) {	// 有文件上传
+						String mimeRule = null; ;
+						try {
+							mimeRule = this.messageSource.getMessage(validationRuleKey + ".mime.rule", null,null) ;
+						} catch (Exception e) {
+							mimeRule = this.messageSource.getMessage("mime.rule", null,null) ;
+						}
+						ActionMIMEValidationUtil amvu = new ActionMIMEValidationUtil(mimeRule,request,this.messageSource) ;
+						if (amvu.getErrors().size() > 0) {	// 现在有错误信息
+							request.setAttribute("errors", amvu.getErrors()); 
+							request.getRequestDispatcher(errorPage).forward(request, response);
+							return false ; 
+						}
+					}
 					return true ;	// 表示向后执行Action操作
 				} 
 			}
@@ -49,3 +65,4 @@ public class ValidationInterceptor implements HandlerInterceptor {
 		return true; // 返回true表示放行，而如果返回了false表示不执行后续的Action或拦截器
 	}
 }
+ 
