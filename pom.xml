@@ -27,8 +27,12 @@
 
 		<fileupload.version>1.3.3</fileupload.version>
 		<commons-io.version>2.5</commons-io.version>
-
+		<jstl.version>1.2</jstl.version>
 		<!-- 【AFTER】其它开发包的版本管理【AFTER】 -->
+
+		<!-- 编写自定义的模块依赖配置 -->
+		<mldnspring.version>0.0.1-SNAPSHOT</mldnspring.version>
+
 		<!-- 【BEFORE】基础的pom环境属性【BEFORE】 -->
 		<compiler.version>3.6.1</compiler.version>
 		<javadoc.version>2.10.4</javadoc.version>
@@ -63,6 +67,24 @@
 	</profiles>
 	<dependencyManagement>
 		<dependencies>
+
+			<dependency>
+				<groupId>cn.mldn</groupId>
+				<artifactId>mldnspring-goods-api</artifactId>
+				<version>${mldnspring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>cn.mldn</groupId>
+				<artifactId>mldnspring-goods-service</artifactId>
+				<version>${mldnspring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>${jstl.version}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>org.apache.cxf</groupId>
 				<artifactId>cxf-rt-frontend-jaxws</artifactId>
@@ -82,16 +104,16 @@
 
 
 
-		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-			<version>${fileupload.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>${commons-io.version}</version>
-		</dependency>
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>${fileupload.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons-io.version}</version>
+			</dependency>
 
 
 			<dependency>
@@ -281,5 +303,9 @@
 		<module>mldnspring-mvc</module>
 		<module>mldnspring-springmvc</module>
 		<module>mldnspring-upload</module>
+		<module>mldnspring-interceptor</module>
+		<module>mldnspring-goods-api</module>
+		<module>mldnspring-goods-service</module>
+		<module>mldnspring-goods-web</module>
 	</modules>
 </project>
