@@ -51,7 +51,8 @@
 			<array>
 				<value>cn.mldn.message.pages</value>
 				<value>cn.mldn.message.messages</value>
-			</array>
+				<value>cn.mldn.message.validations</value>
+			</array> 
 		</property>
 	</bean>	 
 	
