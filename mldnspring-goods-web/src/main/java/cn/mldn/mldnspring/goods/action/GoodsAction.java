@@ -25,6 +25,18 @@ public class GoodsAction extends AbstractAction {
 	private static final String TITLE = "商品" ; 
 	@Resource
 	private IGoodsService goodsService ;
+	
+	@RequestMapping("goods_delete")
+	public ModelAndView delete(String ids) throws Exception {
+		ModelAndView mav = new ModelAndView(super.getPage("forward.page")) ;
+		if (this.goodsService.remove(super.stringToLong(ids))) {
+			super.setMsgAndUrl(mav, "goods.list.action", "vo.delete.success", TITLE);
+		}  else {
+			super.setMsgAndUrl(mav, "goods.list.action", "vo.delete.failure", TITLE);
+		}
+		return mav ;
+	}  
+	
 	@RequestMapping("goods_edit_pre")
 	public ModelAndView editPre(long gid) {
 		ModelAndView mav = new ModelAndView(super.getPage("goods.edit.page")) ;

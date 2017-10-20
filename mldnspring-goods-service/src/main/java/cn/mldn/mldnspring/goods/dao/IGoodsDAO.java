@@ -8,6 +8,13 @@ import cn.mldn.util.dao.IBaseDAO;
 
 public interface IGoodsDAO extends IBaseDAO<Long, Goods> {
 	/**
+	 * 实现信息的逻辑删除处理
+	 * @param gid
+	 * @param dflag
+	 * @return
+	 */
+	public boolean doEditDflag(Set<Long> gid,Integer dflag)  ;
+	/**
 	 * 根据商品编号删除掉所有的商品标签 
 	 * @param gid
 	 * @return

@@ -17,6 +17,15 @@ public abstract class AbstractAction {
 	@Resource
 	protected MessageSource messageSource ;
 	/**
+	 * 拆分后转为Set集合
+	 * @param str
+	 * @return
+	 */
+	public Set<Long> stringToLong(String str) {
+		String num [] = str.split(",") ;
+		return this.stringToLong(num) ; 
+	}
+	/**
 	 * 设置提示信息
 	 * @param mav
 	 * @param urlKey

@@ -60,9 +60,8 @@ public class GoodsServiceImpl extends AbstractService implements IGoodsService {
 
 	@Override
 	public boolean remove(Set<Long> gids) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		return this.goodsDAO.doEditDflag(gids, 1);
+	} 
 
 	@Override
 	public Map<String, Object> preEdit(long id) {

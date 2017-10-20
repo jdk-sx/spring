@@ -21,6 +21,27 @@ import cn.mldn.util.dao.abs.AbstractDAO;
 @Repository
 public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO, RowMapper<Goods> {
 	@Override
+	public boolean doEditDflag(Set<Long> gid, Integer dflag) {
+		String sql = "UPDATE goods SET dflag=? WHERE gid=?";
+		int[][] len = super.jdbcTemplate.batchUpdate(sql, gid, gid.size(),
+				new ParameterizedPreparedStatementSetter<Long>() {
+					@Override
+					public void setValues(PreparedStatement ps, Long num) throws SQLException {
+						ps.setInt(1, dflag);
+						ps.setLong(2, num);
+					}
+				});
+		for (int x = 0; x < len.length; x++) {
+			for (int y = 0; y < len[x].length; y++) {
+				if (len[x][y] <= 0) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	@Override
 	public boolean doRemoveGoodsTag(Long gid) {
 		String sql = "DELETE FROM goods_tag WHERE gid=?";
 		return super.jdbcTemplate.update(sql, gid) > 0;
@@ -87,7 +108,7 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO, RowMapper<Go
 
 	@Override
 	public boolean doRemove(Set<Long> ids) {
-		// TODO Auto-generated method stub
+		String sql = "";
 		return false;
 	}
 
@@ -131,13 +152,13 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO, RowMapper<Go
 
 	@Override
 	public Long getAllCount() {
-		String sql = "SELECT COUNT(*) FROM goods";
+		String sql = "SELECT COUNT(*) FROM goods WHERE dflag=0";
 		return super.jdbcTemplate.queryForObject(sql, Long.class);
 	}
 
 	@Override
 	public Long getSplitCount(String column, String keyWord) {
-		String sql = "SELECT COUNT(*) FROM goods WHERE " + column + " LIKE ? ";
+		String sql = "SELECT COUNT(*) FROM goods WHERE dflag=0 AND " + column + " LIKE ? ";
 		return super.jdbcTemplate.queryForObject(sql, new Object[] { "%" + keyWord + "%" }, Long.class);
 	}
 
